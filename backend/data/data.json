@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "Buy bread, socks and soap",
+      "status": "no_active"
+    },
+    {
+      "id": 2,
+      "text": "Add this TodoList program",
+      "status": "no_active"
+    },
+    {
+      "id": 3,
+      "text": "Improve knowledge in the development of react applications",
+      "status": "no_active"
+    }
+  ]
+}

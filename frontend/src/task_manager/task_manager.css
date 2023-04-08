@@ -1,0 +1,14 @@
+#task_container {
+
+    border: 1px solid black;
+    border-radius: 20px;
+
+    box-sizing: border-box;
+    padding: 10px;
+
+    overflow-x: hidden;
+
+    height: 240px;
+    margin: 15px 0;
+
+}

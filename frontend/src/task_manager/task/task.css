@@ -1,0 +1,53 @@
+.task {
+
+    border: 1px solid black;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px 0;
+
+}
+.task_text {
+
+    display: block;
+    width: 90%;
+    margin: 0 10px;
+
+    font-size: 1em;
+
+}
+.task_button_state {
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+}
+.task_button_delete {
+    position: relative;
+    border: none;
+    width: 30px;
+    display: flex;
+    align-items: center;
+}
+.task_button_delete:before,
+.task_button_delete:after {
+    content: "";
+    background-color: black;
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    border-radius: 1px;
+}
+.task_button_delete:after {
+    transform: rotate(45deg);
+}
+.task_button_delete:before {
+    transform: rotate(-45deg);
+}
