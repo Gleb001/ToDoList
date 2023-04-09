@@ -1,18 +1,23 @@
 {
   "tasks": [
     {
-      "id": 1,
+      "id": "809fd2ea-3187-23de-2a95-195b50259fe0",
       "text": "Buy bread, socks and soap",
       "status": "no_active"
     },
     {
-      "id": 2,
+      "id": "a94ba90c-8b30-fa8f-6d19-ab778f2a22f8",
       "text": "Add this TodoList program",
       "status": "no_active"
     },
     {
-      "id": 3,
+      "id": "f8da5ca1-7aa1-3f3d-141c-38a6fd0ac328",
       "text": "Improve knowledge in the development of react applications",
+      "status": "no_active"
+    },
+    {
+      "id": "e8fc11e0-5c42-b124-cfcf-92953e8f1c67",
+      "text": "Delete me!",
       "status": "no_active"
     }
   ]

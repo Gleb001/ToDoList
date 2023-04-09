@@ -1,18 +1,22 @@
-#button_add_task {
+.button_add_task {
     
     width: 100px;
-    display: block;
-
-    margin: 20px auto;
+    margin: 5px auto;
     border-radius: 10px;
 
     box-sizing: border-box;
     padding: 10px;
 
+    background-color: grey;
+    border: 1px solid black;
+    color: black;
+
+    cursor: pointer;
+
     transition: background-color .3s linear, color .3s linear;
 
 }
-#button_add_task:hover {
+.button_add_task:hover {
     background-color: black;
     color: grey;
     transition: background-color .3s linear, color .3s linear;

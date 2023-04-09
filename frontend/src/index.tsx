@@ -1,6 +1,8 @@
 // import ================================================= //
-import "./index.css";
 import ReactDOM from 'react-dom/client';
+import React from "react";
+
+import "./assets/styles/index.css";
 import App from './App';
 
 // main =================================================== //

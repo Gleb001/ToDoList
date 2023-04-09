@@ -29,15 +29,16 @@
     border-radius: 50%;
 
 }
-.task_button_delete {
+.button_task_delete {
     position: relative;
     border: none;
     width: 30px;
     display: flex;
     align-items: center;
+    background-color: transparent;
 }
-.task_button_delete:before,
-.task_button_delete:after {
+.button_task_delete:before,
+.button_task_delete:after {
     content: "";
     background-color: black;
     position: absolute;
@@ -45,9 +46,9 @@
     height: 2px;
     border-radius: 1px;
 }
-.task_button_delete:after {
+.button_task_delete:after {
     transform: rotate(45deg);
 }
-.task_button_delete:before {
+.button_task_delete:before {
     transform: rotate(-45deg);
 }

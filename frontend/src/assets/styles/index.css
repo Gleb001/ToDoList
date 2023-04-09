@@ -1,3 +1,8 @@
+/* import ================================================= */
+@import "../styles/app/App.css";
+@import "../styles/button/index.css";
+
+/* main =================================================== */
 body {
 
     height: 70vh;
@@ -18,11 +23,4 @@ body {
     display: block;
     width: 1000px;
 
-}
-
-button {
-    background-color: grey;
-    border: 1px solid black;
-    color: black;
-    cursor: pointer;
 }
