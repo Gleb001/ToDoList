@@ -1,7 +1,7 @@
 // import types =========================================== //
 import uuid from "react-uuid";
 
-export type DataTaskType = {
+export type TaskType = {
     id: ReturnType<typeof uuid>,
     text: string,
     status: StatusTaskType

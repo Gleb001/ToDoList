@@ -1,5 +1,5 @@
 // import ================================================= //
-import { DataTaskType } from "../components/task/types";
+import {DataTaskType} from "../../../assets/types/task_type";
 import uuid from "react-uuid";
 
 // export ================================================= //

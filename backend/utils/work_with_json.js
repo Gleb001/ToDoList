@@ -11,7 +11,7 @@ function updateJSONFile(path, callback) {
         error => console.log(error)
     );
 }
-function getJSON(path) { return require(path); }
+function getJSON(path) {return require(path); }
 
 // export ---------------------------------------------- //
 module.exports = {updateJSONFile, getJSON};

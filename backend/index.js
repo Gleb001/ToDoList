@@ -40,14 +40,32 @@ app.patch("/api/data/task", express.text(), (req, res) => {
     let data_task = JSON.parse(req.body);
     updateJSONFile(data_path, (data) => {
         let tasks = data.tasks;
-        for (let index=0; index < tasks.length; index++) {
+        for (let index = 0; index < tasks.length; index++) {
             let task = tasks[index];
-            if(task.id === data_task.id) {
+            if (task.id === data_task.id) {
                 task[data_task.key] = data_task.new_value;
             }
         }
     });
     res.json(getJSON(data_path).tasks);
+});
+app.post("/api/data/task", express.text(), (req, res) => {
+    let { current_task, current_position } = JSON.parse(req.body);
+    updateJSONFile(data_path, data => {
+        let tasks = data.tasks;
+        let previous_position;
+        for (let index = 0; index < tasks.length; index++) {
+            let check_task = tasks[index];
+            if (check_task.id === current_task.id) {
+                previous_position = index;
+                break;
+            }
+        }
+        if (previous_position != current_position)  {
+            tasks.splice(previous_position, 1);
+            tasks.splice(current_position, 0, current_task);
+        }
+    });
 });
 
 // "/api/data"

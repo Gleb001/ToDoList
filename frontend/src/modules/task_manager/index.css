@@ -4,7 +4,7 @@
     border-radius: 20px;
 
     box-sizing: border-box;
-    padding: 10px;
+    padding: 0 10px;
 
     overflow-x: hidden;
 
@@ -13,4 +13,11 @@
 
     position: relative;
 
+}
+
+#task_container div:first-child {
+    margin: 10px 0 5px;
+}
+#task_container div:last-child {
+    margin: 5px 0 10px;
 }

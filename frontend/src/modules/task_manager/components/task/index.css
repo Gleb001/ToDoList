@@ -3,13 +3,15 @@
     border: 1px solid black;
     border-radius: 10px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background-color: grey;
 
     box-sizing: border-box;
     padding: 10px;
-    margin: 10px 0;
+    margin: 5px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
 }
 .task_text {
@@ -21,6 +23,7 @@
     font-size: 1em;
 
 }
+
 .task_button_state {
 
     width: 20px;
@@ -29,6 +32,7 @@
     border-radius: 50%;
 
 }
+
 .button_task_delete {
     position: relative;
     border: none;
@@ -37,6 +41,7 @@
     align-items: center;
     background-color: transparent;
 }
+
 .button_task_delete:before,
 .button_task_delete:after {
     content: "";
@@ -46,9 +51,26 @@
     height: 2px;
     border-radius: 1px;
 }
+
 .button_task_delete:after {
     transform: rotate(45deg);
 }
+
 .button_task_delete:before {
     transform: rotate(-45deg);
+}
+
+.moving_task {
+    position: absolute;
+    cursor: pointer;
+
+    z-index: 5;
+}
+
+.task_drop_zone {
+    border-radius: 10px;
+    background-color: black;
+    width: 100%;
+    display: block;
+    margin: 5px 0;
 }
