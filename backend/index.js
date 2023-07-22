@@ -1,55 +1,75 @@
-// requires -------------------------------------------- //
+// requires ============================================ //
+// framework Express ----------------------------------- //
 const express = require("express");
+// cors ------------------------------------------------ //
+const cors = require("cors");
+// utils ----------------------------------------------- //
 const { updateJSONFile, getJSON } = require("./utils/work_with_json");
 
-// main ------------------------------------------------ //
-const app = express();
+// constants
+const APP = express();
 const PORT = process.env.PORT || 5000;
-const data_path = __dirname + "/data/data.json";
+const DATA_PATH = __dirname + "/data";
 
-// listen
-app.listen(PORT, () => console.log(`Server starting on ${PORT}!`));
+// main ================================================ //
 
-// "/api/data/list_tasks"
-app.get("/api/data/list_tasks", (req, res) => {
-    res.json(getJSON(data_path).tasks);
+// listen ---------------------------------------------- //
+APP.listen(PORT, () => console.log(`Server starting on ${PORT}!`));
+
+// link middleware ------------------------------------- //
+APP.use(cors());
+
+// routing --------------------------------------------- //
+
+// "/tasks"
+const PATH_TO_TASKS = DATA_PATH + "/tasks.json";
+APP.get("/tasks", (req, res) => {
+    res.json(getJSON(PATH_TO_TASKS));
 });
-app.post("/api/data/list_tasks", express.text(), (req, res) => {
-    let task = JSON.parse(req.body);
-    updateJSONFile(data_path, data => data.tasks.push({ ...task }));
-    res.json(getJSON(data_path).tasks);
-});
-app.delete("/api/data/list_tasks", express.text(), (req, res) => {
-    let delete_task = JSON.parse(req.body);
-    updateJSONFile(data_path, data => {
-        let index_delete_task = 0;
-        let tasks = data.tasks;
-        for (let index = 0; index < tasks.length; index++) {
-            let check_task = tasks[index];
-            if (check_task.id === delete_task.id) {
-                index_delete_task = index;
-                break;
-            }
+APP.post("/tasks", express.json(), (req, res) => {
+    let task = req.body;
+
+    let new_tasks = updateJSONFile(
+        PATH_TO_TASKS,
+        data => {
+            data.push(task);
+            return data;
         }
-        data.tasks.splice(index_delete_task, 1);
-    });
-    res.json(getJSON(data_path).tasks);
+    );
+
+    res.json(new_tasks);
 });
-// "/api/data/task"
-app.patch("/api/data/task", express.text(), (req, res) => {
-    let data_task = JSON.parse(req.body);
-    updateJSONFile(data_path, (data) => {
-        let tasks = data.tasks;
-        for (let index = 0; index < tasks.length; index++) {
-            let task = tasks[index];
-            if (task.id === data_task.id) {
-                task[data_task.key] = data_task.new_value;
-            }
+APP.delete("/tasks", express.json(), (req, res) => {
+    let taskId = req.body.id;
+
+    let new_tasks = updateJSONFile(
+        PATH_TO_TASKS,
+        tasks => tasks.filter(task => task.id !== taskId)
+    );
+
+    res.json(new_tasks);
+});
+APP.patch("/tasks", express.json(), (req, res) => {
+    let new_data_task = req.body;
+    let new_tasks = updateJSONFile(
+        PATH_TO_TASKS,
+        tasks => {
+            tasks.forEach((task, index, tasks) => {
+                if (task.id === new_data_task.id) {
+                    tasks[index] ={
+                        ...task,
+                        ...new_data_task
+                    };
+                    // console.log(tasks[index]);
+                }
+            });
+            return tasks;
         }
-    });
-    res.json(getJSON(data_path).tasks);
+    );
+    res.json(new_tasks);
 });
-app.post("/api/data/task", express.text(), (req, res) => {
+// "/task"
+APP.post("/task", express.text(), (req, res) => {
     let { current_task, current_position } = JSON.parse(req.body);
     updateJSONFile(data_path, data => {
         let tasks = data.tasks;
@@ -61,7 +81,7 @@ app.post("/api/data/task", express.text(), (req, res) => {
                 break;
             }
         }
-        if (previous_position != current_position)  {
+        if (previous_position != current_position) {
             tasks.splice(previous_position, 1);
             tasks.splice(current_position, 0, current_task);
         }
@@ -69,4 +89,4 @@ app.post("/api/data/task", express.text(), (req, res) => {
 });
 
 // "/api/data"
-app.get("/api/data", (req, res) => res.json(getJSON(data_path)));
+APP.get("/api/data", (req, res) => res.json(getJSON(data_path)));

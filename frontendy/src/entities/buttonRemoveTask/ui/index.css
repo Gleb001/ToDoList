@@ -1,0 +1,33 @@
+/* main */
+.button_remove_task {
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    width: 30px;
+    height: 20px;
+
+    background-color: transparent;
+    border: none;
+
+    position: relative;
+    
+}
+
+.button_remove_task:before,
+.button_remove_task:after {
+    content: "";
+    background-color: black;
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    border-radius: 1px;
+}
+.button_remove_task:after {
+    transform: rotate(45deg);
+}
+.button_remove_task:before {
+    transform: rotate(-45deg);
+}
