@@ -9,5 +9,6 @@ type addTaskType = () => Promise<TaskType[]>
 
 // main ================================================= //
 export const getTasks: addTaskType = async () => (
-    await withAPI("http://localhost:5000/tasks")
+    await fetch("http://localhost:5000/tasks")
+        .then(response => response.json())
 );

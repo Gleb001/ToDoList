@@ -26,67 +26,39 @@ const PATH_TO_TASKS = DATA_PATH + "/tasks.json";
 APP.get("/tasks", (req, res) => {
     res.json(getJSON(PATH_TO_TASKS));
 });
-APP.post("/tasks", express.json(), (req, res) => {
-    let task = req.body;
-
-    let new_tasks = updateJSONFile(
+APP.post("/tasks", express.json(), ({ body }, res) => {
+    updateJSONFile(
         PATH_TO_TASKS,
-        data => {
-            data.push(task);
-            return data;
+        tasks => {
+            tasks.push(body);
+            return tasks;
         }
     );
-
-    res.json(new_tasks);
+    res.json(body);
 });
-APP.delete("/tasks", express.json(), (req, res) => {
-    let taskId = req.body.id;
-
-    let new_tasks = updateJSONFile(
+APP.delete("/tasks", express.json(), ({ body }, res) => {
+    updateJSONFile(
         PATH_TO_TASKS,
-        tasks => tasks.filter(task => task.id !== taskId)
+        tasks => {
+            return tasks.filter(task => task.id !== body.id)
+        }
     );
-
-    res.json(new_tasks);
+    res.json(body);
 });
-APP.patch("/tasks", express.json(), (req, res) => {
-    let new_data_task = req.body;
-    let new_tasks = updateJSONFile(
+APP.patch("/tasks", express.json(), ({ body }, res) => {
+    console.log(body);
+    let result = updateJSONFile(
         PATH_TO_TASKS,
         tasks => {
             tasks.forEach((task, index, tasks) => {
-                if (task.id === new_data_task.id) {
-                    tasks[index] ={
-                        ...task,
-                        ...new_data_task
-                    };
-                    // console.log(tasks[index]);
+                if (task.id === body.id) {
+                    tasks[index] = Object.assign(task, body);
                 }
             });
             return tasks;
         }
     );
-    res.json(new_tasks);
+    console.log(result);
+    console.log(body);
+    res.json(body);
 });
-// "/task"
-APP.post("/task", express.text(), (req, res) => {
-    let { current_task, current_position } = JSON.parse(req.body);
-    updateJSONFile(data_path, data => {
-        let tasks = data.tasks;
-        let previous_position;
-        for (let index = 0; index < tasks.length; index++) {
-            let check_task = tasks[index];
-            if (check_task.id === current_task.id) {
-                previous_position = index;
-                break;
-            }
-        }
-        if (previous_position != current_position) {
-            tasks.splice(previous_position, 1);
-            tasks.splice(current_position, 0, current_task);
-        }
-    });
-});
-
-// "/api/data"
-APP.get("/api/data", (req, res) => res.json(getJSON(data_path)));

@@ -2,12 +2,13 @@
 import withAPIType from "./types";
 
 // main ====================================================== //
-export const withAPI: withAPIType = async (url, options) => (
+export const withAPI: withAPIType = async (url, action, options) => (
     await fetch(url, options)
-        .then(response => 
-            response.ok ?
-                response.json() :
-                response
-        )
-        .catch(error => console.log(error))
+        .then(response => {
+            if (!action) return response;
+
+            let [type, callback] = action;
+            let typeValue = response.ok ? "success" : "error";
+            if (typeValue === type) callback();
+        })
 );

@@ -5,12 +5,12 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 // constants ================================================= //
 const SRC_PATH = path.resolve(__dirname, "./src");
 const PATHS = {
-    "@app": SRC_PATH + "/app",
-    "@pages": SRC_PATH + "/pages",
-    "@shared": SRC_PATH + "/shared",
-    "@widgets": SRC_PATH + "/widgets",
-    "@entities": SRC_PATH + "/entities",
+    "@app":      SRC_PATH + "/app",
+    "@pages":    SRC_PATH + "/pages",
+    "@shared":   SRC_PATH + "/shared",
+    "@widgets":  SRC_PATH + "/widgets",
     "@features": SRC_PATH + "/features",
+    "@entities": SRC_PATH + "/entities",
 };
 
 // export ==================================================== //
