@@ -1,14 +1,13 @@
 // import
 // react
-import React, {useRef} from 'react';
+import React from 'react';
 // api
 import ButtonRemoveTaskType from "./types";
 // redux
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
-// import { remove as removeTask } from '@app/redux/reducer/tasksReducer';
 // internal
 import "./ui/index.css";
-import { deleteTask } from '@app/redux/reducer/actionCreators';
+import { deleteTask } from '@app/redux/reducer/tasksReducer';
 
 // main
 export const ButtonRemoveTask: ButtonRemoveTaskType = ({
@@ -17,9 +16,7 @@ export const ButtonRemoveTask: ButtonRemoveTaskType = ({
 
     let dispatch = useAppDispatch();
 
-    function handleClick() {
-        dispatch( deleteTask(taskId) );
-    }
+    function handleClick() { dispatch( deleteTask(taskId) ); }
 
     return (
         <button

@@ -1,179 +1,98 @@
 // import ================================================= //
 // react
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
+// components
+import { ButtonRemoveTask } from "@entities/buttonRemoveTask";
+import InputTask from "@entities/InputTask";
 // internal
 import "./ui/index.css";
 import TaskType from "./types";
-import InputTask from "@entities/InputTask";
-import { ButtonRemoveTask } from "@entities/buttonRemoveTask";
+import {
+    getStyleTask,
+    createShadowTask,
+    getTopPositionTask,
+    changePositionTask
+} from "./helpers";
+import { useAppDispatch } from "@shared/hooks/useAppDispatch";
+import { patchTasks } from "@app/redux/reducer/actionCreators";
 
 // main =================================================== //
-const Task: TaskType = (data) => {
+const Task: TaskType = ({ id, name, index }) => {
 
-    // let task_ref = useRef<HTMLDivElement>(null);
-    //   let drop_zone_parameters: DropZoneParametersType = {
-    //     html: null,
-    //     _isMoreTask(value, task) {
-    //       let center_task_coordintate_y = task.offsetTop + (task.offsetHeight / 2);
-    //       return (value > center_task_coordintate_y);
-    //     },
-    //     get task_environment() {
+    let dispatch = useAppDispatch();
 
-    //       let low_task = this.html!.previousElementSibling as HTMLElement | null;
+    let new_index = useRef(index);
+    let taskRef = useRef<HTMLDivElement>(null);
+    let timeoutRef = useRef<Timer>(null);
 
-    //       let high_task = this.html!.nextElementSibling as HTMLElement | null;
-    //       if (high_task?.classList.contains("moving_task")) {
-    //         high_task = high_task!.nextElementSibling as HTMLElement | null;
-    //       }
+    let shadowTaskRef = useMemo(createShadowTask, []);
+    let [isMoving, setIsMoving] = useState(false);
 
-    //       return { low_task, high_task };
+    function handleMouseDown() {
+        timeoutRef.current = setTimeout(() => {
+            setIsMoving(true);
+            taskRef.current?.after(shadowTaskRef);
+        }, 350);
+    }
+    function handleMouseUp() {
+        if (timeoutRef.current) {
 
-    //     },
-    //     checkPosition(current_y_position) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
 
-    //       let { low_task, high_task } = this.task_environment;
+            shadowTaskRef.remove();
+            setIsMoving(false);
+            
+            if (index !== new_index.current) {
+                dispatch(
+                    patchTasks({
+                        old_index: index,
+                        new_index: new_index.current
+                    })
+                );
+            }
 
-    //       let isMoveDown = low_task && !this._isMoreTask(
-    //         current_y_position,
-    //         low_task
-    //       );
-    //       if (isMoveDown) {
-    //         this.html!.remove();
-    //         low_task!.before(this.html!);
-    //         return;
-    //       }
-
-    //       let isMoveUp = high_task && this._isMoreTask(
-    //         current_y_position + task_ref.current!.offsetHeight,
-    //         high_task
-    //       );
-    //       if (isMoveUp) {
-    //         this.html!.remove();
-    //         high_task!.after(this.html!);
-    //         return;
-    //       }
-
-    //     },
-    //     create(height) {
-    //       let result = document.createElement("div");
-    //       result.classList.add("task_drop_zone");
-    //       result.style.height = height + "px";
-    //       return result;
-    //     },
-    //   };
-    //   let handleMoveEvents = {
-    //     preparationToMove() {
-
-    //       task_ref.current!.querySelector("input")?.setAttribute("disabled", "true");
-
-    //       let container = task_ref.current!.parentElement!;
-    //       let scroll_top = container.scrollTop;
-
-    //       // 1. first set fixed values
-    //       task_ref.current!.style.width = task_ref.current!.offsetWidth + "px";
-    //       task_ref.current!.style.top = task_ref.current!.offsetTop + "px";
-    //       // 2. then add a class with position: absolute;
-    //       task_ref.current!.classList.add("moving_task");
-
-    //       let height_task = task_ref.current!.offsetHeight;
-    //       drop_zone_parameters.html = drop_zone_parameters.create(height_task);
-    //       task_ref.current!.before(drop_zone_parameters.html);
-
-    //       container.scrollTo({ top: scroll_top, left: 0 });
-
-    //     },
-    //     moveStart() {
-
-    //       // get DOM elements
-    //       let html_task = task_ref.current!;
-    //       let task_container = html_task.parentElement!;
-    //       let last_task = task_container.lastElementChild! as HTMLElement;
-
-    //       let style_task = window.getComputedStyle(html_task);
-    //       let margin_top_task = parseInt(style_task.marginTop);
-    //       let margin_bottom_task = parseInt(style_task.marginBottom);
-
-    //       // get postitions variables
-    //       let min_y = margin_top_task;
-    //       let max_y = last_task.offsetTop - min_y;
-    //       let center_task = (html_task.offsetHeight + margin_top_task + margin_bottom_task) / 2;
-
-    //       return function (event: MouseEvent) {
-
-    //         let current_scroll = task_container.scrollTop;
-    //         let y_coordinate = event.clientY || 0;
-
-    //         let new_value = (y_coordinate - center_task - task_container.offsetTop) + current_scroll;
-    //         new_value = new_value <= min_y ? min_y :
-    //           new_value >= max_y ? max_y :
-    //             new_value;
-    //         html_task.style.top = new_value + "px";
-
-    //         drop_zone_parameters.checkPosition(new_value);
-
-    //       }
-
-    //     },
-    //     moveEnd() {
-
-    //       drop_zone_parameters.html!.before(task_ref.current!);
-
-    //       // removing
-    //       task_ref.current!.classList.remove("moving_task");
-    //       drop_zone_parameters.html!.remove();
-    //       task_ref.current!.querySelector("input")?.removeAttribute("disabled");
-
-    //       // update
-    //       let tasks = Array.from(task_ref.current!.parentElement!.children);
-    //       let new_position = tasks.indexOf(task_ref.current!);
-    //       updatePositionTask(data_task, new_position);
-
-    //     },
-    //   };
-
-    //   let handleMouseEvents: HandleMouseEventsType = {
-
-    //     motion_timeout: null,
-    //     scroll_func() {
-    //       let new_value = parseInt(window.getComputedStyle(task_ref.current!).top);
-    //       drop_zone_parameters.checkPosition(new_value);
-    //     },
-
-    //     move: null,
-
-    //     down() {
-    //       this.motion_timeout = setTimeout(() => {
-    //         handleMoveEvents.preparationToMove();
-    //         this.move = handleMoveEvents.moveStart();
-    //         task_ref.current!.addEventListener("mousemove", this.move);
-    //         task_ref.current!.parentElement?.addEventListener("scroll", this.scroll_func);
-    //       }, 300);
-    //     },
-    //     up(event) {
-    //       if (event.target!.classList.contains("moving_task")) {
-    //         handleMoveEvents.moveEnd();
-    //         task_ref.current!.removeEventListener("mousemove", this.move!);
-    //         task_ref.current!.parentElement?.removeEventListener("scroll", this.scroll_func);
-    //       }
-    //       if (this.motion_timeout) clearInterval(this.motion_timeout);
-    //     },
-    //     leave(event) {
-    //       if (event.target!.classList.contains("moving_task")) this.up(event);
-    //     },
-
-    //   };
-
-    console.log(`render Task ${data.id}`);
+        }
+    }
+    function handleMouseLeave() {
+        taskRef.current?.onmouseup;
+    }
+    function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+        if (isMoving && taskRef.current) {
+            let top_position = getTopPositionTask(event, taskRef.current!);
+            let bottom_position = top_position + taskRef.current!.offsetHeight;
+            new_index.current += changePositionTask(
+                shadowTaskRef,
+                top_position,
+                bottom_position,
+            );
+        }
+    }
 
     return (
-        <div className="task">
-            <InputTask taskId={data.id} value={data.name} />
-            <ButtonRemoveTask taskId={data.id} />
+        <div
+
+            ref={taskRef}
+            style={getStyleTask(taskRef.current, isMoving)}
+
+            className="task"
+
+            onMouseLeave={handleMouseLeave}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+
+        >
+            <InputTask
+                taskId={id}
+                value={name}
+                disabled={isMoving}
+            />
+            <ButtonRemoveTask taskId={id} />
         </div>
     );
 
 };
-
 
 // export ================================================== //
 export default Task;

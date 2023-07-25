@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { TaskType } from "@shared/types/tasks";
 
+
+// ABOUT TASKS ---------------------------------------------- //
 // POST
 export const postTasks = createAsyncThunk(
     "tasks/postTasks",
@@ -40,11 +42,28 @@ export const deleteTask = createAsyncThunk(
     }
 );
 // PATCH
+export const patchTasks = createAsyncThunk(
+    "tasks/patchTasks",
+    async (data: { old_index: number, new_index: number }) => {
+        let response = await fetch(
+            "http://localhost:5000/tasks",
+            {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            }
+        );
+        return response.json();
+    }
+);
+
+// ABOUT TASK ----------------------------------------------- //
+// PATCH
 export const patchTask = createAsyncThunk(
     "tasks/patchTask",
     async (data: TaskType) => {
         let response = await fetch(
-            "http://localhost:5000/tasks",
+            "http://localhost:5000/task",
             {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },

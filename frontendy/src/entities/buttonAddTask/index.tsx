@@ -1,6 +1,6 @@
 // import ================================================= //
 // react
-import React, { useState } from "react"
+import React from "react"
 // libs
 import uniqueId from "@shared/libs/uniqueId";
 // hooks
@@ -8,7 +8,7 @@ import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 // internal
 import "./ui/index.css";
 import ButtonAddTaskType from "./types";
-import { postTasks } from "@app/redux/reducer/actionCreators";
+import { postTasks } from "@app/redux/reducer/tasksReducer";
 
 // main =================================================== //
 const ButtonAddTask: ButtonAddTaskType = ({ }) => {
@@ -21,9 +21,7 @@ const ButtonAddTask: ButtonAddTaskType = ({ }) => {
                 id: uniqueId(),
                 name: "New task..."
             })
-        ).then(result => {
-            console.log(result);
-        });
+        );
     }
 
     return (

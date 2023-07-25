@@ -1,5 +1,7 @@
 #task_container {
 
+    box-sizing: border-box;
+
     border: 1px solid black;
     border-radius: 20px;
 
@@ -15,9 +17,6 @@
 
 }
 
-#task_container div:first-child {
-    margin: 10px 0 5px;
-}
-#task_container div:last-child {
-    margin: 5px 0 10px;
+#task_container div:nth-child(n) {
+    margin: 5px 0;
 }

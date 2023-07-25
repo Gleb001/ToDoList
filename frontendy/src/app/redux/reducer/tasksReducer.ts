@@ -1,9 +1,9 @@
 // imports =================================================== //
 // redux-toolkit
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // types
 import { TaskType } from "@shared/types/tasks";
-import { deleteTask, fetchTasks, patchTask, postTasks } from "./actionCreators";
+import { deleteTask, fetchTasks, patchTask, postTasks, patchTasks } from "./actionCreators";
 
 // types ===================================================== //
 interface initialStateType {
@@ -34,29 +34,17 @@ let tasksReducer = createSlice({
                 state.status = "succeeded";
                 state.data = action.payload;
             })
-            .addCase(fetchTasks.rejected, (state, { error }) => {
-                state.status = "failed";
-                state.error = error.message as string;
-            })
             // POST tasks
             .addCase(postTasks.fulfilled, (state, action: PayloadAction<TaskType>) => {
                 state.status = "succeeded";
                 state.data.push(action.payload);
             })
-            .addCase(postTasks.rejected, (state, { error }) => {
-                state.status = "failed";
-                state.error = error.message as string;
-            })
-            // DELETE task
+            // DELETE tasks
             .addCase(deleteTask.fulfilled, (state, action: PayloadAction<TaskType>) => {
                 state.status = "succeeded";
                 state.data = state.data.filter(
                     task => task.id !== action.payload.id
                 );
-            })
-            .addCase(deleteTask.rejected, (state, { error }) => {
-                state.status = "failed";
-                state.error = error.message as string;
             })
             // PATCH task
             .addCase(patchTask.fulfilled, (state, action: PayloadAction<TaskType>) => {
@@ -69,15 +57,45 @@ let tasksReducer = createSlice({
                     }
                 });
             })
-            .addCase(patchTask.rejected, (state, {error}) => {
-                state.status = "failed";
-                state.error = error.message as string;
+            // PATCH tasks
+            .addCase(patchTasks.fulfilled, (state, action: PayloadAction<{ old_index: number, new_index: number }>) => {
+                let { old_index, new_index } = action.payload;
+                let item = state.data[old_index];
+                state.data.splice(old_index, 1);
+                state.data.splice(new_index, 0, item);
             })
+            // failed event...
+            .addMatcher(
+                (action) => action.type.endsWith("/rejected"),
+                (state, { error }) => {
+                    state.status = "failed";
+                    state.error = error.message as string;
+                } 
+            )
     }
 });
 
 // export ==================================================== //
 export { tasksReducer };
-// export let { add, remove, set } = tasksReducer.actions;
 export { fetchTasks, postTasks, deleteTask, patchTask };
 export default tasksReducer.reducer;
+
+
+
+function changeIndex(array: [], old_index: number, new_index: number) {
+    if (array.length <= old_index || array.length <= new_index) {
+        return array;
+    }
+
+    let item = array[old_index];
+    let result = [];
+    for (let index = 0; index < array.length; index++) {
+        if (index === new_index) {
+            result.push(item);
+        }
+        if (index !== old_index) {
+            result.push(array[index]);
+        }
+    }
+    return result;
+}
