@@ -1,7 +1,7 @@
 import {FC} from "react";
 
 type ButtonRemoveTaskType = FC<{
-    taskId: string,
+    indexTask: number,
 }>
 
 export default ButtonRemoveTaskType;

@@ -1,7 +1,6 @@
 import {FC} from "react";
-type InputTaskType = FC<{
-    taskId: string,
+type TitleTaskType = FC<{
     value: string,
-    disabled: boolean,
+    change: (...args: any) => void
 }>
-export default InputTaskType;
+export default TitleTaskType;

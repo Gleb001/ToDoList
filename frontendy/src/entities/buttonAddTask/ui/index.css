@@ -7,17 +7,12 @@
     box-sizing: border-box;
     padding: 10px;
 
-    background-color: grey;
-    border: 1px solid black;
-    color: black;
+    background-color: var(--primary-background-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
 
     cursor: pointer;
 
     transition: background-color .3s linear, color .3s linear;
 
-}
-.button_add_task:hover {
-    background-color: black;
-    color: grey;
-    transition: background-color .3s linear, color .3s linear;
 }

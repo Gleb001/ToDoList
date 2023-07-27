@@ -1,0 +1,16 @@
+.button_task_priority {
+
+    cursor: pointer;
+
+    background-color: var(--primary-backgound-color);
+
+    border-radius: 15px;
+
+    box-sizing: border-box;
+    padding: 10px 20px;
+
+    outline: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+
+}

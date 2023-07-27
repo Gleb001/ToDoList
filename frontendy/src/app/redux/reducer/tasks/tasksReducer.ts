@@ -3,7 +3,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // types
 import { TaskType } from "@shared/types/tasks";
-import { deleteTask, fetchTasks, patchTask, postTasks, patchTasks } from "./actionCreators";
+import { deleteTask, fetchTasks, patchTask, postTask, patchTasks } from "./actionCreators";
 
 // types ===================================================== //
 interface initialStateType {
@@ -21,9 +21,9 @@ const initialState: initialStateType = {
 
 // main ====================================================== //
 let tasksReducer = createSlice({
-    name: "taks",
+    name: "tasks",
     initialState,
-    reducers: { },
+    reducers: {},
     extraReducers(builder) {
         builder
             // GET tasks
@@ -35,34 +35,31 @@ let tasksReducer = createSlice({
                 state.data = action.payload;
             })
             // POST tasks
-            .addCase(postTasks.fulfilled, (state, action: PayloadAction<TaskType>) => {
+            .addCase(postTask.fulfilled, (state, action: PayloadAction<TaskType>) => {
                 state.status = "succeeded";
                 state.data.push(action.payload);
             })
             // DELETE tasks
-            .addCase(deleteTask.fulfilled, (state, action: PayloadAction<TaskType>) => {
+            .addCase(deleteTask.fulfilled, (state, action: PayloadAction<{index: number}>) => {
                 state.status = "succeeded";
                 state.data = state.data.filter(
-                    task => task.id !== action.payload.id
+                    (_, index) => index !== action.payload.index
                 );
             })
             // PATCH task
-            .addCase(patchTask.fulfilled, (state, action: PayloadAction<TaskType>) => {
-                state.data.forEach((task, index, tasks) => {
-                    if (task.id === action.payload.id) {
-                        tasks[index] = Object.assign(
-                            task, 
-                            action.payload
-                        );
-                    }
-                });
+            .addCase(patchTask.fulfilled, (state, action: PayloadAction<{ index: number, parameters: TaskType & {id: never} }>) => {
+                let {index, parameters} = action.payload;
+                state.data[index] = Object.assign(state.data[index], parameters);
             })
             // PATCH tasks
             .addCase(patchTasks.fulfilled, (state, action: PayloadAction<{ old_index: number, new_index: number }>) => {
                 let { old_index, new_index } = action.payload;
-                let item = state.data[old_index];
-                state.data.splice(old_index, 1);
-                state.data.splice(new_index, 0, item);
+                let item = state.data.splice(old_index, 1)[0];
+                if (state.data.length === new_index) {
+                    state.data.push(item);
+                } else {
+                    state.data.splice(new_index, 0, item);
+                }
             })
             // failed event...
             .addMatcher(
@@ -70,32 +67,12 @@ let tasksReducer = createSlice({
                 (state, { error }) => {
                     state.status = "failed";
                     state.error = error.message as string;
-                } 
+                }
             )
     }
 });
 
 // export ==================================================== //
 export { tasksReducer };
-export { fetchTasks, postTasks, deleteTask, patchTask };
+export { fetchTasks, postTask, deleteTask, patchTask };
 export default tasksReducer.reducer;
-
-
-
-function changeIndex(array: [], old_index: number, new_index: number) {
-    if (array.length <= old_index || array.length <= new_index) {
-        return array;
-    }
-
-    let item = array[old_index];
-    let result = [];
-    for (let index = 0; index < array.length; index++) {
-        if (index === new_index) {
-            result.push(item);
-        }
-        if (index !== old_index) {
-            result.push(array[index]);
-        }
-    }
-    return result;
-}

@@ -1,0 +1,64 @@
+#task_editor {
+
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+
+    box-sizing: border-box;
+    padding: 25px 30px;
+
+    margin: 0 25px;
+
+}
+
+#task_editor .button_container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+#task_editor .button_container > button {
+    margin-right: 10px;
+}
+#task_editor .button_container > button:not([class], [id]) {
+    background-color: var(--secondary-background-color);
+    color: var(--primary-color);
+
+    border-radius: 15px;
+
+    box-sizing: border-box;
+    padding: 10px 5px;
+ }
+#task_editor .button_container > button:last-child {
+    margin: 0;
+}
+
+
+@media screen and (min-width: 1800px) {
+    #task_editor {
+        width: 500px;
+    }
+}
+@media screen and (min-width: 1600px) {
+    #task_editor {
+        width: 450px;
+    }
+}
+@media screen and (min-width: 1366px) {
+    #task_editor {
+        width: 450px;
+    }
+}
+@media screen and (min-width: 1080px) {
+    #task_editor {
+        width: 450px;
+    }
+}
+/* @media screen and (min-width: 720px) {
+    #task_editor {
+        width: 450px;
+    }
+}
+@media screen and (min-width: 320px) {
+    #task_editor {
+        width: 450px;
+    }
+} */

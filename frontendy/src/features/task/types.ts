@@ -3,7 +3,11 @@ import { FC } from "react";
 import { TaskType as TaskDataType } from "@shared/types/tasks";
 
 // main =================================================== //
-type TaskType = FC<TaskDataType & {index: number}>
+
+type TaskType = FC<{
+    index: number,
+    data: TaskDataType,
+}>
 
 // export ================================================= //
 export default TaskType;

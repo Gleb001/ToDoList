@@ -1,0 +1,43 @@
+/* INTER font =============================================== */
+@font-face {
+    font-family: "Inter";
+    font-weight: 700;
+    src: url("./Inter/static/Inter-Bold.ttf");
+}
+@font-face {
+    font-family: "Inter";
+    font-weight: 500;
+    src: url("./Inter/static/Inter-Medium.ttf");
+}
+@font-face {
+    font-family: "Inter";
+    font-weight: 400;
+    src: url("./Inter/static/Inter-Regular.ttf");
+}
+@font-face {
+    font-family: "Inter";
+    font-weight: 300;
+    src: url("./Inter/static/Inter-Light.ttf");
+}
+
+/* MONTSERRAT-ALTERNATES font =============================================== */
+@font-face {
+    font-family: "Montserrat-Alternates";
+    font-weight: 700;
+    src: url("./Montserrat_Alternates/MontserratAlternates-Bold.ttf");
+}
+@font-face {
+    font-family: "Montserrat-Alternates";
+    font-weight: 500;
+    src: url("./Montserrat_Alternates/MontserratAlternates-Medium.ttf");
+}
+@font-face {
+    font-family: "Montserrat-Alternates";
+    font-weight: 400;
+    src: url("./Montserrat_Alternates/MontserratAlternates-Regular.ttf");
+}
+@font-face {
+    font-family: "Montserrat-Alternates";
+    font-weight: 300;
+    src: url("./Montserrat_Alternates/MontserratAlternates-Light.ttf");
+}

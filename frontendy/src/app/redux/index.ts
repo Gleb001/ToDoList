@@ -1,19 +1,16 @@
 // imports =================================================== //
 // redux toolkit --------------------------------------------- //
 import { configureStore } from "@reduxjs/toolkit";
-// import { getDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 // reducers -------------------------------------------------- //
-import tasksReducer from "./reducer/tasksReducer";
+import tasksReducer from "./reducer/tasks/tasksReducer";
+import activeTaskReducer from "./reducer/activeTaskReducer";
 
 // main ====================================================== //
 let store = configureStore({
     reducer: {
-        tasks: tasksReducer
+        tasks: tasksReducer,
+        active_task: activeTaskReducer,
     },
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    //     immutableCheck:    { warnAfter: 128 },
-    //     serializableCheck: { warnAfter: 128 },
-    // })
 });
 
 // export ==================================================== //

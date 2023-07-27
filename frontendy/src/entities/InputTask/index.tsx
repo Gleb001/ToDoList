@@ -1,35 +1,26 @@
-import InputTaskType from "./types";
+import TitleTaskType from "./types";
 import React, { useState } from "react";
-import { useAppDispatch } from "@shared/hooks/useAppDispatch";
-import { patchTask } from "@app/redux/reducer/tasksReducer";
+import "./ui/index.css";
+import { TextArea } from "@shared/components/textarea";
 
-const InputTask: InputTaskType = ({
-  taskId, value, disabled
+const TitleTask: TitleTaskType = ({
+  change, value
 }) => {
 
-  let dispatch = useAppDispatch();
-  let [currentValue, setCurrentValue] = useState(value);
-
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setCurrentValue(event.target.value);
-  }
-  function handleBlur(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleBlur(event: React.FocusEvent<HTMLTextAreaElement>) {
     let new_value = event.target.value.replace(/ +/g, " ");
-    if (new_value !== value) {
-      setCurrentValue(new_value);
-      dispatch(patchTask({ id: taskId, name: new_value }));
-    }
+    if (new_value !== value) change(new_value);
   }
 
   return (
-    <input
-      disabled={disabled}
-      className='task_text'
-      value={currentValue}
-      onChange={handleChange}
+    <TextArea
+      className='task_title'
+      initialValue={value}
       onBlur={handleBlur}
+      placeholder='Наименование задачи'
+      max_rows={4}
     />
   );
-}
+};
 
-export default InputTask;
+export default TitleTask;

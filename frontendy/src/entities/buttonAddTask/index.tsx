@@ -8,7 +8,7 @@ import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 // internal
 import "./ui/index.css";
 import ButtonAddTaskType from "./types";
-import { postTasks } from "@app/redux/reducer/tasksReducer";
+import { postTask } from "@app/redux/reducer/tasks/tasksReducer";
 
 // main =================================================== //
 const ButtonAddTask: ButtonAddTaskType = ({ }) => {
@@ -17,9 +17,12 @@ const ButtonAddTask: ButtonAddTaskType = ({ }) => {
 
     function handleClick() {
         dispatch(
-            postTasks({
+            postTask({
                 id: uniqueId(),
-                name: "New task..."
+                title: "",
+                description: "",
+                isPriority: false,
+                isComplete: false,
             })
         );
     }

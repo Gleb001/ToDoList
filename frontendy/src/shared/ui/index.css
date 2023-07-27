@@ -1,6 +1,6 @@
 /* import ================================================= */
 /* fonts -------------------------------------------------- */
-/* images ------------------------------------------------- */
+@import url("./fonts/index.css");
 /* styles ------------------------------------------------- */
 @import url("./styles/normalize.css");
 @import url("./styles/constants.css");
@@ -8,22 +8,41 @@
 /* main =================================================== */
 body {
 
-    height: 70vh;
+    height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background-color: grey;
+    background-color: var(--primary-backgound-color);
 
-    color: black;
+    color: var(--primary-color);
+    font-family: Inter;
     font-size: 16px;
 
 }
 #root {
 
-    margin: 50PX auto;
-    display: block;
-    width: 1000px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    
+    height: 90%;
 
 }
+
+/* change size -------------------------------------------- */
+/* @media screen and (min-width: 1800px) {
+    #root {
+
+        width: 1000px;
+    
+    }
+}
+@media screen and (min-width: 1600px) and (max-width: 1800px) {
+    #root {
+
+        width: 800px;
+    
+    }
+} */

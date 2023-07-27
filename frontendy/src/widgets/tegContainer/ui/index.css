@@ -1,0 +1,14 @@
+#teg_container {
+    margin: 10px 0 20px;
+    display: flex;
+}
+#teg_container > span {
+
+    background-color: var(--secondary-background-color);
+    border-radius: 20px;
+
+    padding: 10px 15px;
+
+    color: var(--primary-background-color);
+
+}

@@ -26,7 +26,40 @@ APP.use(cors());
 APP.get("/tasks", (req, res) => {
     res.json(getJSON(PATH_TO_TASKS));
 });
-APP.post("/tasks", express.json(), ({ body }, res) => {
+APP.patch("/tasks", express.json(), ({ body }, res) => {
+    let { old_index, new_index } = body;
+    updateJSONFile(
+        PATH_TO_TASKS,
+        tasks => {
+            let item = tasks.splice(old_index, 1)[0];
+            if (tasks.length === new_index) {
+                tasks.push(item);
+            } else {
+                tasks.splice(new_index, 0, item);
+            }
+            return tasks;
+        }
+    );
+    res.json(body);
+});
+
+// "/task"
+APP.patch("/task", express.json(), ({ body }, res) => {
+    let { index, parameters } = body;
+    console.log(parameters);
+    updateJSONFile(
+        PATH_TO_TASKS,
+        tasks => {
+            tasks[index] = Object.assign(
+                tasks[index],
+                parameters
+            );
+            return tasks;
+        }
+    );
+    res.json(body);
+});
+APP.post("/task", express.json(), ({ body }, res) => {
     updateJSONFile(
         PATH_TO_TASKS,
         tasks => {
@@ -36,41 +69,13 @@ APP.post("/tasks", express.json(), ({ body }, res) => {
     );
     res.json(body);
 });
-APP.delete("/tasks", express.json(), ({ body }, res) => {
+APP.delete("/task", express.json(), ({ body }, res) => {
+    let delete_index = body.index;
     updateJSONFile(
         PATH_TO_TASKS,
-        tasks => {
-            return tasks.filter(task => task.id !== body.id)
-        }
-    );
-    res.json(body);
-});
-APP.patch("/tasks", express.json(), ({ body }, res) => {
-    let {old_index, new_index} = body;
-    updateJSONFile(
-        PATH_TO_TASKS,
-        tasks => {
-            let item = tasks[old_index];
-            tasks.splice(old_index, 1);
-            tasks.splice(new_index, 0, item);
-            return tasks;
-        }
-    );
-    res.json(body);
-});
-
-// "/task"
-APP.patch("/task", express.json(), ({ body }, res) => {
-    updateJSONFile(
-        PATH_TO_TASKS,
-        tasks => {
-            tasks.forEach((task, index, tasks) => {
-                if (task.id === body.id) {
-                    tasks[index] = Object.assign(task, body);
-                }
-            });
-            return tasks;
-        }
+        tasks => tasks.filter(
+            (_, index) => index !== delete_index
+        )
     );
     res.json(body);
 });

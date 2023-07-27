@@ -3,30 +3,9 @@ import { MouseEvent } from "react";
 import { inRange } from "@shared/utils/inRange";
 
 // main
-export function getStyleTask (
-    taskRef: HTMLElement | null,
-    isMoving: boolean
-): React.CSSProperties {
-    if (isMoving && taskRef) {
-        let padding_top = taskRef.computedStyleMap().get("margin-top") as { value: number };
-
-        return {
-            position: "absolute",
-            top: taskRef.offsetTop - padding_top.value + "px",
-            zIndex: 10,
-
-            width: taskRef.offsetWidth,
-            cursor: "pointer",
-        }
-    } else {
-        return {
-            top: "0px",
-            zIndex: 1,
-
-            width: "100%",
-        }
-    }
-};
+export function getContainerTaskRef(taskRef: HTMLElement) {
+    return taskRef.parentElement;
+}
 export function getTop(
     mouseEvent: React.MouseEvent,
     taskRef: HTMLElement

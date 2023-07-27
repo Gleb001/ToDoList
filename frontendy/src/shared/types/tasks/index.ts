@@ -1,7 +1,10 @@
 // main
 interface TaskType {
     id: string,
-    name: string,
+    title: string,
+    description: string,
+    isPriority: boolean,
+    isComplete: boolean,
 }
 
 // export

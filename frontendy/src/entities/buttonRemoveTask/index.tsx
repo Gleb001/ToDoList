@@ -7,22 +7,26 @@ import ButtonRemoveTaskType from "./types";
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 // internal
 import "./ui/index.css";
-import { deleteTask } from '@app/redux/reducer/tasksReducer';
+import { deleteTask } from '@app/redux/reducer/tasks/tasksReducer';
+import { set as setActiveTask } from '@app/redux/reducer/activeTaskReducer';
 
 // main
 export const ButtonRemoveTask: ButtonRemoveTaskType = ({
-    taskId
+    indexTask
 }) => {
 
     let dispatch = useAppDispatch();
 
-    function handleClick() { dispatch( deleteTask(taskId) ); }
+    function handleClick() {
+        dispatch( deleteTask(indexTask) );
+        dispatch( setActiveTask(-1) );
+    }
 
     return (
         <button
             className='button_remove_task'
             onClick={handleClick}
-        ></button>
+        >X</button>
     );
 
 };

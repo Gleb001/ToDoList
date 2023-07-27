@@ -3,31 +3,16 @@
 
     cursor: pointer;
 
-    display: flex;
-    align-items: center;
-
-    width: 30px;
-    height: 20px;
+    width: 2em;
+    height: 2em;
 
     background-color: transparent;
-    border: none;
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
 
-    position: relative;
-    
-}
+    text-align: center;
+    font-size: 1.25em;
+    line-height: 1.5em;
+    color: var(--primary-color);
 
-.button_remove_task:before,
-.button_remove_task:after {
-    content: "";
-    background-color: black;
-    position: absolute;
-    width: 20px;
-    height: 2px;
-    border-radius: 1px;
-}
-.button_remove_task:after {
-    transform: rotate(45deg);
-}
-.button_remove_task:before {
-    transform: rotate(-45deg);
 }
