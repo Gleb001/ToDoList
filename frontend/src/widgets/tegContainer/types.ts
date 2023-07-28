@@ -1,7 +1,9 @@
 import {FC} from "react";
 
 // main
-type tegContainerType = FC<{}>
+type tegContainerType = FC<{
+    isPriority: boolean
+}>
 
 // export
 export default tegContainerType;

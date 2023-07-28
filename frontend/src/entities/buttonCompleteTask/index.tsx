@@ -25,22 +25,15 @@ export const ButtonCompleteTask: ButtonCompleteTaskType = ({
 
     return (
         <button
-            className={"button_complete_task "} 
-            style={{
-                borderColor: isPriority ?
-                                    "var(--main-task-color)" :
-                                    "var(--primary-color)",
-                borderWidth: isPriority ?
-                                    "3px" :
-                                    "1px",
-                backgroundColor: isComplete ?
-                                    "var(--primary-color)" :
-                                    "transparent",
-            }}
+            className={
+                " button_complete_task " +
+                (isPriority ? " button_is_priority " : " ") +
+                (isComplete ? " button_is_complete " : " ")
+            }
             onClick={handleClick}
         >{
-            isComplete ? "✔" : ""
-        }</button>
+                isComplete ? "✓" : ""
+            }</button>
     );
 
 };

@@ -8,11 +8,9 @@ import {
     createShadowTask,
     getTopPositionTask,
     changePositionTask,
-    getContainerTaskRef
+    getContainerTaskRef,
+    getStyle
 } from "./helpers";
-import {
-    getStyleTask
-} from "./ui/script_style";
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { patchTasks } from "@app/redux/reducer/tasks/actionCreators";
 import { Timer } from "@shared/types/timer";
@@ -32,7 +30,7 @@ const Task: TaskType = ({
     // refs
     let new_index = useRef(index);
     let timeoutRef = useRef<Timer>(null);
-    let [isMoving, setIsMoving] = useState(false);
+    let [isMoving, setIsMoving] = useState(false); 
 
     let taskRef = useRef<HTMLDivElement>(null);
     let shadowTaskRef = useMemo(createShadowTask, []);
@@ -103,17 +101,14 @@ const Task: TaskType = ({
     useEffect(() => setTitle(getTitle()), [data]);
 
     let isActive = (index_active === -1 || index_active === index);
+    let [style, className] = getStyle(taskRef.current, isMoving, isActive)
     return (
         <div
 
             ref={taskRef}
-            style={getStyleTask(taskRef.current, isMoving)}
 
-            className={
-                "task " +
-                (isActive ? " enabled_task " : " disabled_task " ) +
-                (data.isComplete ? " complete_task " : " ")
-            }
+            style={style}
+            className={className + " task "}
 
             onMouseLeave={() => taskRef.current?.onmouseup}
             onMouseUp={handleMouseUp}
@@ -127,7 +122,7 @@ const Task: TaskType = ({
                 isPriority={data.isPriority}
                 indexTask={index}
             />
-            <p>{title}</p>
+            <p style={{textDecoration: data.isComplete ? "line-through" : ""}}>{title}</p>
         </div>
     );
 

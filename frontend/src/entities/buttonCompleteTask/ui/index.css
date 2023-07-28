@@ -3,16 +3,23 @@
 
     cursor: pointer;
 
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 
     padding: 0;
 
-    background-color: var(--primary-backgound-color);
+    background-color: transparent;
     border: 1px solid var(--primary-color);
     border-radius: 50%;
     
-    color: var(--primary-backgound-color);
+    color: var(--disabled-task-color);
     text-align: center;
 
+}
+.button_is_priority {
+    border-width: 2px;
+    border-color: var(--main-task-color);
+}
+.button_is_complete {
+    background-color: var(--secondary-background-color);
 }

@@ -76,3 +76,25 @@ export function changePositionTask(
     return add_index;
 
 }
+export function getStyle(
+    taskRef: HTMLElement | null,
+    isMoving: boolean,
+    isActive: boolean
+): [React.CSSProperties, string] {
+    if (!taskRef) return [{}, ""];
+
+    let className = isActive ? " enabled_task " : " disabled_task ";
+
+    let style = {};
+    if (isMoving) {
+        let padding_top = taskRef.computedStyleMap().get("margin-top") as { value: number };
+        className += " moving_task ";
+        style = {
+            top: taskRef.offsetTop - padding_top.value + "px",
+            width: taskRef.offsetWidth, // ?
+        }
+    }
+
+    return [ style, className ];
+
+}

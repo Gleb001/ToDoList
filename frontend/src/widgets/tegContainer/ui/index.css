@@ -4,11 +4,22 @@
 }
 #teg_container > span {
 
-    background-color: var(--secondary-background-color);
+    margin-right: 8px;
+
     border-radius: 20px;
 
     padding: 10px 15px;
 
+}
+#teg_container > span:not([class], [id]) {
+    background-color: var(--secondary-background-color);
     color: var(--primary-background-color);
+}
 
+#teg_container > span:last-child {
+    margin-right: 0;
+}
+
+.teg_priority {
+    background-color: var(--priotiry-task-color);
 }

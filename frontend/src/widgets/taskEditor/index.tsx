@@ -18,7 +18,7 @@ export const TaskEditor: taskEditorType = ({
 }) => {
 
     let dispatch = useAppDispatch();
-    let { title, description } = useAppSelector(state => state.tasks.data)[indexTask];
+    let { title, description, isPriority } = useAppSelector(state => state.tasks.data)[indexTask];
 
     function changeTask<Type extends keyof TaskType>(param_name: Type, value: TaskType[Type]) {
         dispatch(
@@ -31,7 +31,7 @@ export const TaskEditor: taskEditorType = ({
 
     return (
         <div id="task_editor">
-            <TegContainer />
+            <TegContainer isPriority={isPriority} />
             <div>
                 <TitleTask
                     value={title}

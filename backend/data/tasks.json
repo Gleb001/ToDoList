@@ -3,13 +3,13 @@
     "id": "id-d7b5dcc2d2bb",
     "title": "Купить хлеб",
     "description": "Сходи в ближайший магазин продуктов, чтобы купить хлеб!",
-    "isPriority": true,
+    "isPriority": false,
     "isComplete": true
   },
   {
-    "id": "id-560h5e262e52g",
-    "title": "Напиши доклад про водород",
-    "description": "Доклад по химии за 7-й класс.",
+    "id": "id-f65677daddcfh",
+    "title": "",
+    "description": "",
     "isPriority": false,
     "isComplete": false
   }
