@@ -1,14 +1,8 @@
 // main ====================================================== //
-type ActionType = [
-    "success" | "error",
-    () => void
-]
-type withAPIType = (
+type withAPIType<T = any> = (
     path: RequestInfo | URL,
-    action?: ActionType,
     options?: RequestInit
-) => Promise<Response | void>
+) => Promise<T | string> 
 
 // export ==================================================== //
-export default withAPIType;
-export {ActionType};
+export type {withAPIType};

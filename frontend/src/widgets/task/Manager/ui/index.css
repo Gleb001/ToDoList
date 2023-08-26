@@ -1,0 +1,22 @@
+/* task manager */
+#task-manager {
+    width: 600px;
+    margin: 0 auto;
+}
+/* button container */
+#task-manager .button-container {
+
+    margin: 10px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#task-manager .button-container > button {
+    width: 100px;
+    margin-right: 8px;
+}
+#task-manager .button-container > button:last-child {
+    margin-right: 0;
+}

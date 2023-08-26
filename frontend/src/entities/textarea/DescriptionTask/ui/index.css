@@ -1,0 +1,21 @@
+.description_task {
+
+    width: 100%;
+    min-height: 1em;
+    max-height: 8em;
+    margin-bottom: 15px;
+
+    font-family: Montserrat-Alternates;
+    line-height: 1.5;
+    color: var(--primary-color);
+    background-color: var(--primary-backgound-color);
+
+    resize: none;
+    border: none;
+    outline: none;
+
+}
+.description_title {
+    display: block;
+    font-weight: bold;
+}

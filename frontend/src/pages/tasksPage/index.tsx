@@ -1,21 +1,12 @@
 // import  ================================================ //
-import { TaskEditor } from "@widgets/taskEditor";
-import TaskManager from "../../widgets/taskContainer/index";
-import React, { FC } from "react";
-import { useAppSelector } from "@shared/hooks/useAppSelector";
+// react -------------------------------------------------- //
+import React from "react";
+// components --------------------------------------------- //
+import { TaskManager } from "@widgets/task/Manager";
+// redux -------------------------------------------------- //
+import type { TasksPage as TasksPageType } from "./types";
 
 // main =================================================== //
-let TasksPage: FC<{}> = ({ }) => {
-
-    let taskIndex = useAppSelector(state => state.active_task);
-
-    return (
-        <>
-            {taskIndex !== -1 && <TaskEditor  indexTask={taskIndex}/>}
-            <TaskManager />
-        </>
-    );
-};
-
-// export ================================================= //
-export default TasksPage;
+export const TasksPage: TasksPageType = ({ }) => (
+    <TaskManager />
+);

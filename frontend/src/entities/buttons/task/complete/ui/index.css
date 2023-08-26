@@ -1,0 +1,35 @@
+/* main ===================================================== */
+.button-complete-task {
+
+    cursor: pointer;
+
+    width: 20px;
+    height: 20px;
+
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    
+    color: var(--disabled-task-color);
+    text-align: center;
+
+}
+.button-complete-task:hover {
+    background-color: var(--secondary-background-color);
+}
+
+/* button complete is priority ------------------------------ */
+.button-priority {
+    border-width: 2px;
+    border-color: var(--main-task-color);
+}
+
+/* button complete is complete ------------------------------ */
+.button-complete {
+    padding: 0 2.5px;
+    background-color: var(--secondary-background-color);
+}
+.button-complete:before {
+    content: "✓";
+    color: var(--disabled-task-color);
+}

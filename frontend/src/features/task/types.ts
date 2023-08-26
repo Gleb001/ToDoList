@@ -1,13 +1,12 @@
-// import types =========================================== //
-import { FC } from "react";
-import { TaskType as TaskDataType } from "@shared/types/tasks";
+// import =================================================== //
+import type { FC } from 'react';
+import type { Task } from '@shared/types/tasks';
 
-// main =================================================== //
-
-type TaskType = FC<{
+// main ===================================================== //
+type TaskFunctionComponent = FC<{
     index: number,
-    data: TaskDataType,
+    data: Task,
 }>
 
-// export ================================================= //
-export default TaskType;
+// export =================================================== //
+export type { TaskFunctionComponent };

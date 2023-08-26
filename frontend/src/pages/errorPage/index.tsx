@@ -1,24 +1,23 @@
-// imports
-import { useRouteError } from "react-router-dom"
+// import =================================================== //
+// react ---------------------------------------------------- //
 import React from "react";
+import { useRouteError } from "react-router-dom"
+// inherit -------------------------------------------------- //
+import type {
+    RouterError,
+    ErrorPage as ErrorPageType
+} from "./types";
 
-// main
-let ErrorPage = () => {
+// main ===================================================== //
+export const ErrorPage: ErrorPageType = () => {
 
-    let error = useRouteError() as { statusText: string, message: string };
+    let { message, statusText } = useRouteError() as RouterError;
 
     return (
         <>
             <h1>Oops!</h1>
-            <p></p>
-            <p>{
-                error.message ||
-                error.statusText
-            }</p>
+            <span>{ message || statusText }</span>
         </>
     );
 
 };
-
-// export
-export default ErrorPage;

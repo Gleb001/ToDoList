@@ -1,25 +1,25 @@
-// imports
+// imports ================================================== //
+// react ---------------------------------------------------- //
 import React from "react";
-import { RouterProvider } from "react-router";
-import { createBrowserRouter } from "react-router-dom";
-import ProviderType from "./types";
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    RouterProvider
+} from "react-router-dom";
+// types ---------------------------------------------------- //
+import type { ProviderType } from "./types";
 
-// main
-let Provider: ProviderType = ({ root, error }) => {
+// main ===================================================== //
+export const Provider: ProviderType = (component) => {
 
-    let router  = createBrowserRouter([
-        {
-            path: "/*",
-            element: root(),
-            errorElement: error(),
-        }
-    ], {basename: "/"});
+    const browserRouter = createBrowserRouter(
+        createRoutesFromElements(
+            component()
+        )
+    );
 
     return (
-        <RouterProvider router={router} />
+        <RouterProvider router={browserRouter} />
     );
-    
-}
 
-// export
-export default Provider;
+};

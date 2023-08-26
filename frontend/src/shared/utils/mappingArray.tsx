@@ -1,18 +1,17 @@
-import React, { ReactNode, FC } from "react";
+// react ==================================================== //
+import React from "react";
+import type { ReactNode, FC } from "react";
 
+// types ==================================================== //
 type mappingArrayType = <Type>(
-    array: (Type)[],
-    comopnent: (arg0: Type) => ReactNode
+    array: (Type & {id: string | number})[],
+    Component: FC<Type>
 ) => ReactNode
 
-// export const mappingArray: mappingArrayType = (array, component) => (
-//     <>{
-//         array.map(item => {
-//             component(item);
-//         })
-//     }</>
-// )
-export const mappingArray: <Type>(array: (Type & {id: string | number})[], Component: FC<Type>) => ReactNode = (array, Component) => (
+// main ===================================================== //
+export const mappingArray: mappingArrayType = (
+    array, Component
+) => (
     <>{
         array.map(item => {
             <Component key={item.id} {...item} />;

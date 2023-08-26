@@ -1,0 +1,50 @@
+/* main ===================================================== */
+
+/* task ----------------------------------------------------- */
+.task-form {
+
+    border: 1px solid;
+    border-radius: 15px;
+
+    height: 50px;
+
+    box-sizing: border-box;
+    padding: 0 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    z-index: 1;
+    /* top: 0px; */
+    /* width: 100%; */
+
+}
+
+/* types task ----------------------------------------------- */
+
+/* enabled */
+.enabled-task {
+    border-color: var(--primary-color);
+    background-color: var(--primary-backgound-color);
+}
+
+/* disabled */
+.disabled-task {
+    color: var(--disabled-task-color);
+    border-color: var(--disabled-task-color);
+}
+.disabled-task > button {
+    border-color: var(--disabled-task-color);
+}
+
+/* shadow */
+
+
+
+/* move */
+.moving-task {
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 0 5px .5px;
+}

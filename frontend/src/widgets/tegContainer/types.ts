@@ -1,9 +1,12 @@
-import {FC} from "react";
+// import =================================================== //
+import type {FC} from "react";
 
-// main
-type tegContainerType = FC<{
-    isPriority: boolean
-}>
+// main ===================================================== //
+interface Props { isPriority: boolean }
+type TagContainer = FC<Props>
 
-// export
-export default tegContainerType;
+// export =================================================== //
+export type {
+    TagContainer,
+    Props
+};

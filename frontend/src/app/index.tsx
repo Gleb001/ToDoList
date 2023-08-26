@@ -1,15 +1,12 @@
-// import
+// import ================================================= //
+// react -------------------------------------------------- //
 import React from "react";
-import Routing from "../pages";
-import ErrorPage from "../pages/errorPage";
-import Provider from "./provider";
+// pages -------------------------------------------------- //
+import { Routing } from "../pages";
+// provider ----------------------------------------------- //
+import { Provider } from "./provider";
+// shared ------------------------------------------------- //
 import "../shared/ui/index.css";
 
-// main
-let App = () => Provider({
-    root: () => <Routing />,
-    error: () => <ErrorPage />,
-});
-
-// export
-export default App;
+// main =================================================== //
+export const App = () => Provider(Routing);

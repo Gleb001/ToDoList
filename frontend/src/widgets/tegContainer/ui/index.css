@@ -1,8 +1,9 @@
-#teg_container {
+/* tag-container */
+#tag-container {
     margin: 10px 0 20px;
     display: flex;
 }
-#teg_container > span {
+#tag-container > span {
 
     margin-right: 8px;
 
@@ -11,15 +12,15 @@
     padding: 10px 15px;
 
 }
-#teg_container > span:not([class], [id]) {
+#tag-container > span:not([class], [id]) {
     background-color: var(--secondary-background-color);
     color: var(--primary-background-color);
 }
-
-#teg_container > span:last-child {
+#tag-container > span:last-child {
     margin-right: 0;
 }
 
-.teg_priority {
+/* tag priority */
+.tag-priority {
     background-color: var(--priotiry-task-color);
 }

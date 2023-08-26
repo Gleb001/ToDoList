@@ -1,8 +1,13 @@
-// types
-type getLengthRowType = (element: HTMLElement | undefined | null) => number
-type CSSStyleValueType = { value: number, unit: string }
+// types ==================================================== //
+type getLengthRowType = (
+    element: HTMLElement | undefined | null
+) => number
+type CSSStyleValueType = {
+    value: number,
+    unit: string
+}
 
-// main
+// main ===================================================== //
 export const getLengthRow: getLengthRowType = (
     element
 ) => {

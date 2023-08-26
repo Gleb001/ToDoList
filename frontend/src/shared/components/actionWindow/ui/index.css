@@ -1,0 +1,20 @@
+.action-window__wrapper {
+
+    margin: 0 auto;
+
+    position: absolute;
+    top: 45%;
+
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+
+    box-sizing: border-box;
+    padding: 35px;
+
+}
+.active-window__header {
+    margin: 5px 0;
+}
+.active-window__main {
+    margin: 5px 0;
+}

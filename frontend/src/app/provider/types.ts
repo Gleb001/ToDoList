@@ -1,8 +1,10 @@
-// import
-import { FC } from "react";
+// import =================================================== //
+import type { JSX } from "react";
 
-// main
-type ProviderType = FC<{ root: () => React.ReactNode, error: () => React.ReactNode }>
+// main ===================================================== //
+type ProviderType = (
+    component: () => React.ReactNode
+) => JSX.Element
 
-// export
-export default ProviderType;
+// export =================================================== //
+export type { ProviderType };

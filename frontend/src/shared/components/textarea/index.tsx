@@ -1,7 +1,11 @@
+// import =================================================== //
+// react ---------------------------------------------------- //
 import React, { useState, useRef, useEffect } from 'react';
+// inherit -------------------------------------------------- //
 import TextAreaType from "./types";
 import { getRows } from './helpers';
 
+// main ===================================================== //
 export const TextArea: TextAreaType = ({
     initialValue, max_rows = 4, ...attributes
 }) => {
@@ -13,11 +17,6 @@ export const TextArea: TextAreaType = ({
     let [rows, setRows] = useState(getRowsValue());
     useEffect(() => setRows( getRowsValue() ), [value]);
 
-    function getRowsValue() {
-        return getRows(textareaRef.current, value.length);
-    }
-    console.log(rows);
-
     return (
         <textarea
             ref={textareaRef}
@@ -27,5 +26,12 @@ export const TextArea: TextAreaType = ({
             onChange={(event) => setValue(event.target.value)}
         />
     );
+
+
+    
+    // insert functions ------------------------------------- //
+    function getRowsValue() {
+        return getRows(textareaRef.current, value.length);
+    }
 
 };

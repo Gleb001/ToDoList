@@ -1,18 +1,20 @@
-import tegContainerType from "./types";
+// import =================================================== //
+// react ---------------------------------------------------- //
 import React from "react";
+// types ---------------------------------------------------- //
+import type { TagContainer as TagContainerType } from "./types";
+// styles --------------------------------------------------- //
 import "./ui/index.css";
 
-// main
-export const TegContainer: tegContainerType = ({
+// main ===================================================== //
+export const TagContainer: TagContainerType = ({
     isPriority
-}) => {
-
-    console.log(isPriority);
-
-    return(
-        <div id="teg_container">
-            <span>Задача</span>
-            {isPriority ? <span className="teg_priority">В приоритете</span> : ""}
-        </div>
-    );
-}
+}) => (
+    <div id="tag-container">
+        <span>Задача</span>
+        {
+            isPriority &&
+            <span className="tag-priority">В приоритете</span>
+        }
+    </div>
+);
