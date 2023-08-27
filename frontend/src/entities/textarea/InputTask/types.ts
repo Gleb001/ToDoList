@@ -2,10 +2,7 @@
 import {FC} from "react";
 
 // main ===================================================== //
-type TitleTaskType = FC<{
-    value: string,
-    change: (...args: any) => void
-}>
+type TitleTask = FC<{}>
 
 // export =================================================== //
-export default TitleTaskType;
+export type { TitleTask };

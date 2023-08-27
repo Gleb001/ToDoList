@@ -1,36 +1,35 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
 import React from 'react';
-// action creator ------------------------------------------- //
-import { patchTask } from '@app/redux/reducer/tasks/actionCreators';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
+import { patchTask } from '@app/redux/reducer/tasks/actionCreators';
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import type { ButtonRemoveTask as ButtonCompleteTaskType } from "./types";
 
 // main ===================================================== //
 export const ButtonCompleteTask: ButtonCompleteTaskType = ({
-    isComplete,
     isPriority,
+    isComplete,
     taskId
 }) => {
 
-    let dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
     function handleClick() {
         dispatch(
             patchTask({
-                id: taskId,
+                id: taskId!,
                 isComplete: !isComplete
             })
         );
     }
     function getClassName() {
         return (
-            "button-complete-task " +
-            (isPriority ? " button-priority " : " ") +
-            (isComplete ? " button-complete " : " ")
+            "button-complete-task" + " " +
+            (isPriority ? "button-priority " : " ") + " " +
+            (isComplete ? "button-complete " : " ")
         );
     }
 
@@ -38,7 +37,7 @@ export const ButtonCompleteTask: ButtonCompleteTaskType = ({
         <button
             className={getClassName()}
             onClick={handleClick}
-        ></button>
+        />
     );
 
 };

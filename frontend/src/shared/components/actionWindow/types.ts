@@ -4,9 +4,11 @@ import type { FC, ReactNode } from 'react';
 
 // main ===================================================== //
 type Wrapper = FC<{
+    id?: string,
     children: ReactNode
 }>
 type Header = FC<{
+    name?: string,
     children: ReactNode
 }>
 type Main = FC<{

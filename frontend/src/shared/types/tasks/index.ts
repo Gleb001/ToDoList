@@ -3,7 +3,7 @@ interface Task {
     id: string,
     title: string,
     description: string,
-    isPriority: boolean,
+    priority: number,
     isComplete: boolean,
 }
 type DataTask = (

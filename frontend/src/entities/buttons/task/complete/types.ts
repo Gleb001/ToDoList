@@ -5,8 +5,8 @@ import type { Task } from "@shared/types/tasks";
 // main ===================================================== //
 type ButtonRemoveTask = FC<{
     isComplete: Task["isComplete"],
-    isPriority: Task["isPriority"],
-    taskId: Task["id"]
+    isPriority: boolean,
+    taskId: Task["id"],
 }>
 
 // export =================================================== //

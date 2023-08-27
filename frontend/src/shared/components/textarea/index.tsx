@@ -1,37 +1,36 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 // inherit -------------------------------------------------- //
-import TextAreaType from "./types";
-import { getRows } from './helpers';
+import type { TextAreaType } from "./types";
+import { setHeightForContent } from './helper/setHeightForContent';
 
 // main ===================================================== //
 export const TextArea: TextAreaType = ({
-    initialValue, max_rows = 4, ...attributes
+    initialValue = "", ...attrs
 }) => {
 
+    let TextAreaRef = useRef<HTMLTextAreaElement | null>(null);
     let [value, setValue] = useState(initialValue);
-    useEffect(() => setValue(initialValue), [initialValue]);
-    
-    let textareaRef = useRef<HTMLTextAreaElement>(null);
-    let [rows, setRows] = useState(getRowsValue());
-    useEffect(() => setRows( getRowsValue() ), [value]);
+    useEffect(() => {
+        if (TextAreaRef.current) {
+            setHeightForContent(TextAreaRef.current!);
+        }
+    }, [])
+
+    function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+        let element = event.target;
+        setValue(element.value);
+        setHeightForContent(element);
+    }
 
     return (
         <textarea
-            ref={textareaRef}
-            {...attributes}
+            ref={TextAreaRef}
             value={value}
-            rows={rows}
-            onChange={(event) => setValue(event.target.value)}
+            onChange={handleChange}
+            {...attrs}
         />
     );
-
-
-    
-    // insert functions ------------------------------------- //
-    function getRowsValue() {
-        return getRows(textareaRef.current, value.length);
-    }
 
 };

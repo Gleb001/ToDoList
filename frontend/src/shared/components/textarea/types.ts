@@ -1,9 +1,14 @@
+// import =================================================== //
 import { FC, HTMLAttributes } from "react";
 
+// main ===================================================== //
 type TextAreaType = FC<
-    { initialValue: string, max_rows?: number }
-    &
-    HTMLAttributes<HTMLTextAreaElement>
+    HTMLAttributes<HTMLTextAreaElement> &
+    {
+        disabled?: boolean,
+        initialValue?: string,
+    }
 >
 
-export default TextAreaType;
+// export =================================================== //
+export type { TextAreaType };

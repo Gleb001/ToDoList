@@ -2,10 +2,7 @@
 import type { FC } from "react";
 
 // main ===================================================== //
-type DescriptionTaskType = FC<{
-    value: string,
-    change: (...args: any) => void,
-}>
+type DescriptionTaskType = FC<{ }>
 
 // export =================================================== //
 export default DescriptionTaskType;

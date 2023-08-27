@@ -6,6 +6,7 @@ import type { MouseEvent } from "react";
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 import { useAppSelector } from '@shared/hooks/useAppSelector';
 import { getUser, postUser } from '@app/redux/reducer/user';
+import { userSelector } from '@app/redux/reducer/user/selectors';
 // types ---------------------------------------------------- //
 import type { Theme } from '@shared/types/user';
 // components ----------------------------------------------- //
@@ -17,7 +18,7 @@ import type { ButtonChangeTheme as ButtonChangeThemeType } from "./types";
 export const ButtonChangeTheme: ButtonChangeThemeType = ({}) => {
 
     let dispatch = useAppDispatch();
-    let { data, status, error } = useAppSelector(state => state.user);
+    let { data, status } = useAppSelector(userSelector);
     useEffect(() => { status === "pending" && dispatch(getUser()) }, [dispatch]);
 
     function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -45,7 +46,7 @@ export const ButtonChangeTheme: ButtonChangeThemeType = ({}) => {
             className='button-change-theme'
             onClick={handleClick}
         >{
-            data.theme
+            data.theme === "light" ? "Светлый" : "Темный"
         }</Button>
     );
 

@@ -23,26 +23,14 @@ body {
 }
 #root {
 
-    margin: 10px auto;
     display: flex;
+    width: 100%;
+    height: 100%;
+
+    margin: 10px auto;
     align-items: center;
-    
-    height: 90%;
+
+    box-sizing: border-box;
+    padding: 10px 20px;
 
 }
-
-/* change size -------------------------------------------- */
-/* @media screen and (min-width: 1800px) {
-    #root {
-
-        width: 1000px;
-    
-    }
-}
-@media screen and (min-width: 1600px) and (max-width: 1800px) {
-    #root {
-
-        width: 800px;
-    
-    }
-} */

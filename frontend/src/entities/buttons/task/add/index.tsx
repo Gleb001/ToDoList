@@ -12,25 +12,20 @@ import { Button } from "@shared/components/button";
 // internal ------------------------------------------------- //
 import type { ButtonAddTaskType } from "./types";
 import { useAppSelector } from "@shared/hooks/useAppSelector";
+import { CreateTask } from "./helper/createTask";
 
 // main ===================================================== //
 export const ButtonAddTask: ButtonAddTaskType = ({ }) => {
 
     let dispatch = useAppDispatch();
-    let position_new_task = useAppSelector(state => state.tasks.data.length);
 
     function handleClick() {
+        let new_task = CreateTask();
         dispatch(
-            postTask({
-                id: uniqueId(),
-                title: "",
-                description: "",
-                isPriority: false,
-                isComplete: false,
-            })
+            postTask(new_task)
         );
         dispatch(
-            setActiveTask({})
+            setActiveTask(new_task)
         );
     }
 
@@ -39,7 +34,7 @@ export const ButtonAddTask: ButtonAddTaskType = ({ }) => {
             className="button-add-task"
             onClick={handleClick}
         >
-            Add
+            Добавить
         </Button>
     );
 

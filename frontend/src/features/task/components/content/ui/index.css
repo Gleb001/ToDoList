@@ -25,10 +25,10 @@
 
 /* enabled */
 .enabled-task {
+    cursor: grab;
     border-color: var(--primary-color);
     background-color: var(--primary-backgound-color);
 }
-
 /* disabled */
 .disabled-task {
     color: var(--disabled-task-color);
@@ -37,10 +37,6 @@
 .disabled-task > button {
     border-color: var(--disabled-task-color);
 }
-
-/* shadow */
-
-
 
 /* move */
 .moving-task {

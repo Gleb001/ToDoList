@@ -1,0 +1,34 @@
+/* setting container ---------------------------------------- */
+#settings-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+}
+
+/* setting -------------------------------------------------- */
+.setting {
+
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+}
+#settings-container .setting:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+#settings-container .setting {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+/* setting name */
+.setting .setting-name {
+    font-size: 1em;
+}

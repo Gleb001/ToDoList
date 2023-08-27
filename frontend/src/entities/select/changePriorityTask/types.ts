@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // main ===================================================== //
-type ButtonTaskPriority = FC<{ }>
+type SelectTaskPriority = FC<{ }>
 
 // export =================================================== //
-export type { ButtonTaskPriority };
+export type { SelectTaskPriority };

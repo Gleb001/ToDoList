@@ -11,7 +11,10 @@ interface initialStateType {
 
 // main ===================================================== //
 export const initialState: initialStateType = {
-    data: { theme: "light" },
+    data: {
+        theme: "light",
+        view_tasks: "list",
+    },
     status: 'pending',
     error: "",
 };

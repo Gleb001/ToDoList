@@ -1,11 +1,13 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
 import React, { useEffect, useRef, useState } from 'react';
+// helpers -------------------------------------------------- //
+import { getTitle } from './helpers/getTitle';
+import { getStyle } from './helpers/getStyle';
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import type { TitleTask as TitleTaskType } from './types';
-import { getTitle } from './helpers/getTitle';
-import { getStyle } from './helpers/getStyle';
+
 
 // main ===================================================== //
 export const TitleTask: TitleTaskType = ({

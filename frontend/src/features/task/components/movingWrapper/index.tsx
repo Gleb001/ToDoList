@@ -1,12 +1,14 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
 import React, { useRef, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { set as setActiveTask } from "@app/redux/reducer/activeTask";
-import { patchTask, putTasks } from "@app/redux/reducer/tasks/actionCreators";
+import { putTasks } from "@app/redux/reducer/tasks/actionCreators";
 // types ---------------------------------------------------- //
 import type { Timer } from "@shared/types/timer";
+import type { movingTaskWrapper as MovingTaskWrapperType } from './types';
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import { getStyle } from "./helpers/getStyle";
@@ -16,7 +18,6 @@ import {
     getContainerTaskRef,
     createShadowTask,
 } from "./helpers";
-import type { movingTaskWrapper as MovingTaskWrapperType } from './types';
 
 // main ===================================================== //
 export const MovingTaskWrapper: MovingTaskWrapperType = ({
@@ -24,6 +25,7 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
 }) => {
 
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     let timeoutRef = useRef<Timer>(null);
     let taskRef = useRef<HTMLDivElement>(null);
@@ -32,7 +34,7 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
     let current_index = index;
     let [isMoving, setIsMoving] = useState(false);
 
-    function handleMouseDown(event: React.MouseEvent<HTMLDivElement>) {
+    function handleMouseDown(event?: React.MouseEvent<HTMLDivElement>) {
         timeoutRef.current = setTimeout(() => {
             setIsMoving(true);
             getContainerTaskRef(taskRef.current!)!.style.userSelect = "none";
@@ -47,10 +49,12 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
 
         }, 350);
     }
-    function handleMouseUp(event: React.MouseEvent<HTMLDivElement>) {
-        if (!timeoutRef.current) return;
+    function handleMouseLeave() {
+        if (isMoving) handleMouseUp();
+    }
+    function handleMouseUp(event?: React.MouseEvent<HTMLDivElement>) {
 
-        clearTimeout(timeoutRef.current);
+        clearTimeout(timeoutRef.current!);
         timeoutRef.current = null;
 
         if (isMoving) {
@@ -72,6 +76,12 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
                 setActiveTask({})
             );
 
+        } // @ts-ignore
+        else if (event.target.tagName !== "BUTTON") {
+            dispatch(
+                setActiveTask(data)
+            );
+            navigate("/tasks/change");
         }
 
     }
@@ -90,14 +100,16 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
     return (
         <div
             ref={taskRef}
+            className="wrapper-task"
             style={getStyle(taskRef.current, isMoving)}
-            onMouseLeave={handleMouseUp}
+
             onMouseUp={handleMouseUp}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
         >{
-                children
-            }</div>
+            children
+        }</div>
     );
 
 };

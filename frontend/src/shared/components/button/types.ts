@@ -8,7 +8,7 @@ type ButtonAttributes = ButtonHTMLAttributes<HTMLButtonElement>
 type Button = FC<
     ButtonAttributes &
     {
-        children: string,
+        children?: string,
     }
 >
 

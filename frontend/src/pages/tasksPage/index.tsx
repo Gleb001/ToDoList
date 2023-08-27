@@ -7,6 +7,10 @@ import { TaskManager } from "@widgets/task/Manager";
 import type { TasksPage as TasksPageType } from "./types";
 
 // main =================================================== //
-export const TasksPage: TasksPageType = ({ }) => (
-    <TaskManager />
-);
+export const TasksPage: TasksPageType = ({ }) => {
+
+    return (
+        <TaskManager />
+    );
+    
+}

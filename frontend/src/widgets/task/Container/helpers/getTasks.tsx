@@ -15,7 +15,13 @@ export const getTasks: getTasksType = (data) => {
     if (data.length > 0) {
         return (
             data.map(
-                (task, index) => <Task index={index} key={task.id} data={task} />
+                (task, index) => (
+                    <Task
+                        index={index}
+                        key={task.id}
+                        data={task}
+                    />
+                )
             )
         );
     } else {

@@ -1,9 +1,10 @@
 // import ================================================= //
 // react ================================================== //
 import React from "react";
+import { NavLink } from "react-router-dom";
 // components --------------------------------------------- //
+import { Button } from "@shared/components/button";
 import { ButtonAddTask } from '@entities/buttons/task/add';
-import { ButtonChangeTheme } from '@entities/buttons/ChageTheme';
 import { TaskContainer } from '@widgets/task/Container';
 // internal ----------------------------------------------- //
 import TaskManagerType from "./types";
@@ -13,9 +14,13 @@ import "./ui/index.css";
 export const TaskManager: TaskManagerType = () => (
     <div id='task-manager'>
         <TaskContainer />
-        <div className="button-container">
-            <ButtonAddTask />
-            <ButtonChangeTheme />
-        </div>
+        <nav className="button-container-task-manager">
+            <NavLink to="/tasks/change">
+                <ButtonAddTask />
+            </NavLink>
+            <NavLink to="/settings">
+                <Button>Настройки</Button>
+            </NavLink>
+        </nav>
     </ div>
 );

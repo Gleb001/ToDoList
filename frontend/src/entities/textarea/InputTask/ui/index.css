@@ -1,4 +1,4 @@
-.task_title {
+.task-title {
 
     width: 100%;
 
@@ -6,20 +6,13 @@
     max-height: 4em;
 
     font-size: 2em;
-    margin: 15px 0 20px;
-
-    border: none;
-    outline: none;
-    resize: none;
+    line-height: 1.25em;
 
     color: var(--primary-color);
     background-color: var(--primary-backgound-color);
 
-}
-
-.task_description {
-
-    font-size: 1em;
-    margin: 10px 0;
+    border: none;
+    outline: none;
+    resize: none;
 
 }

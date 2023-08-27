@@ -9,7 +9,5 @@ import type { SettingsPage as SettingsPageType } from './types';
 
 // main ===================================================== //
 export const SettingsPage: SettingsPageType = ({ }) => (
-    <ActionWindow>
-        <UserSettings />
-    </ActionWindow>
+    <UserSettings />
 );

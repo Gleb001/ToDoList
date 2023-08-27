@@ -8,24 +8,28 @@ import type { ActionWindow as ActionWindowType } from './types';
 // main ===================================================== //
 export const ActionWindow: ActionWindowType = {
 
-    Wrapper: ({ children }) => {
-
-        console.log(children);
+    Wrapper: ({ id = "", children }) => {
 
         return (
-            <div className='action-window__wrapper'>
+            <div id={id} className='action-window__wrapper'>
                 {Children.map(children, child => child)}
             </div>
         );
 
     },
-    Header: ({ children }) => (
-        <div className='active-window__header'>
-            {Children.map(children, child => child)}
+    Header: ({ name, children }) => (
+        <div className='action-window__header'>
+            <div className='buttons-container'>{
+                Children.map(children, child => child)
+            }</div>
+            {
+                name &&
+                <span className='action-window-name'>{name}</span>
+            }
         </div>
     ),
     Main: ({ children }) => (
-        <div className='active-window__main'>
+        <div className='action-window__main'>
             {Children.map(children, child => child)}
         </div>
     ),
