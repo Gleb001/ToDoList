@@ -15,9 +15,7 @@ export const TaskManager: TaskManagerType = () => (
     <div id='task-manager'>
         <TaskContainer />
         <nav className="button-container-task-manager">
-            <NavLink to="/tasks/change">
-                <ButtonAddTask />
-            </NavLink>
+            <ButtonAddTask />
             <NavLink to="/settings">
                 <Button>Настройки</Button>
             </NavLink>

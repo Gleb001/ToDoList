@@ -3,7 +3,9 @@
 import type { FC } from 'react';
 
 // main ===================================================== //
-type ButtonCompleteTaskWithText = FC<{}>
+type ButtonCompleteTaskWithText = FC<{
+    onClick?: (...args: any[]) => void
+}>
 
 // export =================================================== //
 export type { ButtonCompleteTaskWithText };

@@ -4,8 +4,8 @@ import React, { useRef, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
-import { set as setActiveTask } from "@app/redux/reducer/activeTask";
-import { putTasks } from "@app/redux/reducer/tasks/actionCreators";
+import { setActiveTask } from "@app/redux/reducer/task";
+import { putListTasks } from "@app/redux/reducer/task/actionCreators";
 // types ---------------------------------------------------- //
 import type { Timer } from "@shared/types/timer";
 import type { movingTaskWrapper as MovingTaskWrapperType } from './types';
@@ -28,7 +28,7 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
     const navigate = useNavigate();
 
     let timeoutRef = useRef<Timer>(null);
-    let taskRef = useRef<HTMLDivElement>(null);
+    let WrapperTaskRef = useRef<HTMLDivElement>(null);
     let shadowTaskRef = useMemo(createShadowTask, []);
 
     let current_index = index;
@@ -36,9 +36,13 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
 
     function handleMouseDown(event?: React.MouseEvent<HTMLDivElement>) {
         timeoutRef.current = setTimeout(() => {
+
             setIsMoving(true);
-            getContainerTaskRef(taskRef.current!)!.style.userSelect = "none";
-            taskRef.current?.after(shadowTaskRef);
+
+            let ContainerTaskRef = getContainerTaskRef(WrapperTaskRef.current!)!;
+            ContainerTaskRef.style.userSelect = "none";
+
+            WrapperTaskRef.current?.after(shadowTaskRef);
 
             // @ts-ignore
             if (event.target.tagName !== "BUTTON") {
@@ -59,13 +63,13 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
 
         if (isMoving) {
 
-            getContainerTaskRef(taskRef.current!)!.style.userSelect = "text";
+            getContainerTaskRef(WrapperTaskRef.current!)!.style.userSelect = "text";
             shadowTaskRef.remove();
             setIsMoving(false);
 
             if (index !== current_index) {
                 dispatch(
-                    putTasks({
+                    putListTasks({
                         old_index: index,
                         new_index: current_index,
                     })
@@ -78,17 +82,14 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
 
         } // @ts-ignore
         else if (event.target.tagName !== "BUTTON") {
-            dispatch(
-                setActiveTask(data)
-            );
-            navigate("/tasks/change");
+            navigate("/tasks/" + data.id + "/edit");
         }
 
     }
-    function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
-        if (isMoving && taskRef.current) {
-            let top_position = getTopPositionTask(event, taskRef.current!);
-            let bottom_position = top_position + taskRef.current!.offsetHeight;
+    function handleMouseMove(event?: React.MouseEvent<HTMLDivElement>) {
+        if (event && isMoving && WrapperTaskRef.current) {
+            let top_position = getTopPositionTask(event, WrapperTaskRef.current!);
+            let bottom_position = top_position + WrapperTaskRef.current!.offsetHeight;
             current_index += changePositionTask(
                 shadowTaskRef,
                 top_position,
@@ -99,9 +100,8 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
 
     return (
         <div
-            ref={taskRef}
-            className="wrapper-task"
-            style={getStyle(taskRef.current, isMoving)}
+            ref={WrapperTaskRef}
+            style={getStyle(WrapperTaskRef.current, isMoving)}
 
             onMouseUp={handleMouseUp}
             onMouseDown={handleMouseDown}

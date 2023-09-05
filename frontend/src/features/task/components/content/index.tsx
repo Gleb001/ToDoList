@@ -1,42 +1,27 @@
-// import ================================================= //
-// react -------------------------------------------------- //
+// import =================================================== //
+// react ---------------------------------------------------- //
 import React from "react";
 // redux ---------------------------------------------------- //
 import { useAppSelector } from "@shared/hooks/useAppSelector";
-import { activeTaskSelector } from "@app/redux/reducer/activeTask/selectors";
+import { activeTaskSelector } from "@app/redux/reducer/task/selectors";
 // components ----------------------------------------------- //
 import { ButtonCompleteTask } from "@entities/buttons/task/complete";
 import { TitleTask } from "@entities/paragraphs/titleTask";
-// internal ----------------------------------------------- //
+// helpers -------------------------------------------------- //
+import { getClassName } from "./helpers/getClassName";
+// internal ------------------------------------------------- //
 import "./ui/index.css";
 import type { ContentTask as ContentTaskType } from "./types";
 
-// main =================================================== //
+// main ===================================================== //
 export const ContentTask: ContentTaskType = ({ data }) => {
 
-    let active_task = useAppSelector(activeTaskSelector);
-    let isPriority = data.priority > 1;
-    console.log(data.title);
-
-    function getClassName() {
-        let additionalClassName = "enabled-task";
-        if (active_task.id && active_task.id !== data.id) {
-            additionalClassName = "disabled-task";
-        }
-        return "task-form" + " " +  additionalClassName;
-    }
+    const active_task = useAppSelector(activeTaskSelector)["data"];
 
     return (
-        <div className={getClassName()} >
-            <ButtonCompleteTask
-                isComplete={data.isComplete}
-                isPriority={isPriority}
-                taskId={data.id}
-            />
-            <TitleTask
-                isThrough={data.isComplete}
-                text={data.title}
-            />
+        <div className={getClassName(data, active_task)} >
+            <ButtonCompleteTask data={data} />
+            <TitleTask data={data} />
         </div>
     );
 

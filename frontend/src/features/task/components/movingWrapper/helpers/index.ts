@@ -1,8 +1,10 @@
-// imports
-import { MouseEvent } from "react";
-import { inRange } from "@shared/utils/inRange";
+// import =================================================== //
+// types ---------------------------------------------------- //
+import type { MouseEvent } from "react";
+// libs ----------------------------------------------------- //
+import { inRange } from "@shared/libs/inRange";
 
-// main
+// main ===================================================== //
 export function getContainerTaskRef(taskRef: HTMLElement) {
     return taskRef.parentElement;
 }

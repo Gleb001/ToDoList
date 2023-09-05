@@ -1,23 +1,16 @@
 [
   {
-    "id": "id-b428104089e29",
-    "title": "Написать диссертацию про котов и собак",
-    "description": "Сдать в универе диссертацию про кошек и собак, а именно по предмету зоологии в ЮУГК универститете под примотром преподавателя кафедры Бандарчука А.А.",
-    "priority": 3,
-    "isComplete": true
-  },
-  {
-    "id": "id-043gga51765d0g",
-    "title": "1",
-    "description": "Описание 1",
-    "priority": 2,
+    "id": "id-e239316adfbe",
+    "title": "2",
+    "description": "",
+    "priority": 0,
     "isComplete": false
   },
   {
-    "id": "id-6bafe245f4e8a",
-    "title": "2",
-    "description": "sfsdfsdf",
-    "priority": 0,
+    "id": "id-74a268gb0bba6",
+    "title": "1",
+    "description": "",
+    "priority": 2,
     "isComplete": false
   }
 ]

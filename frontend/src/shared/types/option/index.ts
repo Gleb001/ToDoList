@@ -2,8 +2,9 @@
 import type { HTMLAttributes } from 'react';
 
 // main ===================================================== //
-interface Option extends HTMLAttributes<HTMLOptionElement> {
-    value: string,
+interface Option<T = any> extends HTMLAttributes<HTMLOptionElement> {
+    value: T,
+    text: string,
 }
 
 // export =================================================== //

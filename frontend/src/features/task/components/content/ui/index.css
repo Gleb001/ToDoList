@@ -31,6 +31,7 @@
 }
 /* disabled */
 .disabled-task {
+    cursor: grab;
     color: var(--disabled-task-color);
     border-color: var(--disabled-task-color);
 }
@@ -40,7 +41,5 @@
 
 /* move */
 .moving-task {
-    position: absolute;
-    z-index: 10;
-    box-shadow: 0 0 5px .5px;
+    cursor: grabbing;
 }

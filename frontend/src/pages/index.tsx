@@ -16,7 +16,7 @@ export const Routing = () => (
             <Route index loader={() => redirect("/tasks")} />
             <Route path="tasks" element={<Outlet />} >
                 <Route index element={<TasksPage />} />
-                <Route path="change" element={<TaskEditorPage />} />
+                <Route path=":id/edit" element={<TaskEditorPage />} />
             </Route>
             <Route path="settings" element={<SettingsPage />} />
         </Route>

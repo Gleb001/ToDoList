@@ -1,7 +1,7 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
 import React, { Children } from 'react';
-// inherit -------------------------------------------------- //
+// internal ------------------------------------------------- //
 import './ui/index.css';
 import type { ActionWindow as ActionWindowType } from './types';
 

@@ -2,6 +2,7 @@
 // react ---------------------------------------------------- //
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 // inherit -------------------------------------------------- //
+import "./ui/index.css";
 import type { TextAreaType } from "./types";
 import { setHeightForContent } from './helper/setHeightForContent';
 

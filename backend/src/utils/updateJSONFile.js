@@ -17,20 +17,24 @@ const fs = require("fs");
   */
 function updateJSONFile(path, callback) {
 
-    // изменить JSON в переменной
-    let file = require(path);
-    callback(file);
+  // изменить JSON в переменной
+  let file = require(path);
+  let new_data_file = callback(file);
 
-    // изменить JSON в файле
-    fs.writeFileSync(
-        path,
-        JSON.stringify(file, null, 2),
-        error => console.log(error)
-    );
+  if (typeof new_data_file !== "undefined") {
+    file = new_data_file
+  }
 
-    return file;
+  // изменить JSON в файле
+  fs.writeFileSync(
+    path,
+    JSON.stringify(file, null, 2),
+    error => console.log(error)
+  );
+
+  return file;
 
 }
 
 // export =================================================== //
-module.exports = {updateJSONFile};
+module.exports = { updateJSONFile };

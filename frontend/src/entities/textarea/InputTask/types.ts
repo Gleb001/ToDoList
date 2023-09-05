@@ -1,5 +1,5 @@
 // import =================================================== //
-import {FC} from "react";
+import type { FC } from "react";
 
 // main ===================================================== //
 type TitleTask = FC<{}>

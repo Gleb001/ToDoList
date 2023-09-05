@@ -1,5 +1,5 @@
 // import =================================================== //
-import { getLengthRow } from "@shared/utils/getLengthRow";
+import { getLengthRow } from "@shared/libs/getLengthRow";
 
 // types ==================================================== //
 type getTitleType = (taskRef: HTMLElement, text: string) => string

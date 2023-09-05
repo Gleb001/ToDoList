@@ -1,5 +1,5 @@
 // import =================================================== //
-import type {FC} from "react";
+import type { FC } from "react";
 
 // main ===================================================== //
 type ButtonAddTaskType = FC<{ }>

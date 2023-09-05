@@ -1,5 +1,4 @@
 // import =================================================== //
-// react ---------------------------------------------------- //
 import type { FC, ReactElement } from 'react';
 import type { Task } from '@shared/types/tasks';
 

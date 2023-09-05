@@ -1,13 +1,12 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useState } from "react";
+import React, { useContext } from "react";
 // component ------------------------------------------------ //
 import { TextArea } from "@shared/components/textarea";
+import { ActiveTaskInEditorContext } from "@widgets/task/Editor/context/ActiveTaskInEditorContext";
 // redux --------------------------------------------------- //
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
-import { useAppSelector } from "@shared/hooks/useAppSelector";
-import { patchTask } from "@app/redux/reducer/tasks";
-import { activeTaskSelector } from "@app/redux/reducer/activeTask/selectors";
+import { patchActiveTask } from "@app/redux/reducer/task";
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import type { TitleTask as TitleTaskType } from "./types";
@@ -16,14 +15,15 @@ import type { TitleTask as TitleTaskType } from "./types";
 export const TitleTask: TitleTaskType = ({ }) => {
 
   const dispatch = useAppDispatch();
-  let task = useAppSelector(activeTaskSelector);
+  const { id, title, isComplete } = useContext(ActiveTaskInEditorContext);
 
   function handleBlur(event: React.FocusEvent<HTMLTextAreaElement>) {
     let TextAreaRef = event.target;
+    // PS: remove extra spaces in the string
     let new_title = TextAreaRef.value.replace(/ +/g, " ");
     dispatch(
-      patchTask({
-        id: task.id!,
+      patchActiveTask({
+        id: id,
         title: new_title
       })
     );
@@ -34,8 +34,8 @@ export const TitleTask: TitleTaskType = ({ }) => {
       className='task-title'
       placeholder='Наименование задачи'
 
-      disabled={task.isComplete!}
-      initialValue={task.title!}
+      disabled={isComplete}
+      initialValue={title}
       onBlur={handleBlur}
     />
   );

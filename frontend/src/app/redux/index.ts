@@ -1,18 +1,16 @@
 // imports =================================================== //
 // redux toolkit --------------------------------------------- //
 import { configureStore } from "@reduxjs/toolkit";
-// reducers -------------------------------------------------- //
+// internal -------------------------------------------------- //
 import {
     userReducer,
-    tasksReducer,
-    activeTaskReducer,
+    taskReducer
 } from "./reducer";
 
 // main ====================================================== //
 export const store = configureStore({
     reducer: {
         user: userReducer,
-        tasks: tasksReducer,
-        active_task: activeTaskReducer,
-    },
+        task: taskReducer
+    }
 });

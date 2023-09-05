@@ -1,5 +1,5 @@
 // import =================================================== //
-import type { combineValuesType } from "./types";
+import type { combineValues as combineValuesType } from "./types";
 
 // main ===================================================== //
 export const combineValues: combineValuesType = (prev, cur) => {

@@ -9,7 +9,7 @@ interface RouterError {
 type ErrorPage = FC<{}>
 
 // export =================================================== //
-export {
+export type {
     ErrorPage,
     RouterError
 };

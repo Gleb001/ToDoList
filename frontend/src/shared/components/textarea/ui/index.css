@@ -1,0 +1,3 @@
+textarea:disabled {
+    color: var(--disabled-task-color);
+}

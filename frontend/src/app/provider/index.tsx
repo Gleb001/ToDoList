@@ -6,7 +6,7 @@ import {
     createRoutesFromElements,
     RouterProvider
 } from "react-router-dom";
-// types ---------------------------------------------------- //
+// internal ------------------------------------------------- //
 import type { ProviderType } from "./types";
 
 // main ===================================================== //

@@ -2,15 +2,15 @@
 // framework Express ---------------------------------------- //
 const express = require("express");
 // utils ---------------------------------------------------- //
-const { getUser, postUser } = require("./methods");
+const { getUser, patchUser } = require("./methods");
 
 // constants ================================================ //
 const ROUTER = express.Router();
 
 // main ===================================================== //
 ROUTER.route("/")
-    .get(getUser)    // получить данные пользователя (по полям)
-    .post(postUser); // изменить данные пользователя (по полям)
+    .get(getUser)
+    .patch(patchUser);
 
 // export =================================================== //
 module.exports = ROUTER;

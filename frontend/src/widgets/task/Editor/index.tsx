@@ -1,46 +1,52 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React from "react";
+import React, { createContext } from "react";
+import { useNavigate, useParams } from "react-router";
+// check types ---------------------------------------------- //
+import { isTask } from "@shared/types/tasks";
 // components ----------------------------------------------- //
 import { ActionWindow } from "@shared/components/actionWindow";
 import { TitleTask } from "@entities/textarea/InputTask";
 import { DescriptionTask } from "@entities/textarea/DescriptionTask";
-import { NavLink } from "react-router-dom";
 import { Button } from "@shared/components/button";
 import { SelectTaskPriority } from "@entities/select/changePriorityTask";
 import { ButtonCompleteTaskWithText } from "@entities/buttons/task/completeWithText";
+import { ButtonRemoveTask } from "@entities/buttons/task/remove";
 // redux ---------------------------------------------------- //
-import { useAppDispatch } from "@shared/hooks/useAppDispatch";
-import { set as setActiveTask } from "@app/redux/reducer/activeTask";
+import { useAppSelector } from "@shared/hooks/useAppSelector";
+import { activeTaskByIdSelector } from "@app/redux/reducer/task/selectors";
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import type { taskEditorType } from "./types";
+import { ActiveTaskInEditorContext } from "./context/ActiveTaskInEditorContext";
 
 // main ===================================================== //
 export const TaskEditor: taskEditorType = ({ }) => {
 
-    const dispatch = useAppDispatch();
+    const { id } = useParams();
+    const active_task = useAppSelector(state => activeTaskByIdSelector(state, id!));
 
-    function handleExit() {
-        dispatch(
-            setActiveTask({})
-        );
-    }
+    const navigate = useNavigate();
+    const handleExit = () => navigate("/tasks");
 
     return (
         <ActionWindow.Wrapper id="task-editor">
             <ActionWindow.Header>
-                <NavLink to="/tasks">
-                    <Button onClick={handleExit}>←</Button>
-                </NavLink>
+                <Button onClick={handleExit}>←</Button>
             </ActionWindow.Header>
             <ActionWindow.Main>
-                <TitleTask />
-                <DescriptionTask />
-                <div className="button-container-task-editor">
-                    <ButtonCompleteTaskWithText />
-                    <SelectTaskPriority />
-                </div>
+                {
+                    isTask(active_task) &&
+                    <ActiveTaskInEditorContext.Provider value={active_task}>
+                        <TitleTask />
+                        <DescriptionTask />
+                        <div className="button-container-task-editor">
+                            <ButtonRemoveTask onClick={handleExit} />
+                            <ButtonCompleteTaskWithText onClick={handleExit} />
+                            <SelectTaskPriority />
+                        </div>
+                    </ActiveTaskInEditorContext.Provider>
+                }
             </ActionWindow.Main>
         </ActionWindow.Wrapper>
     );

@@ -5,8 +5,7 @@ import type { FC } from 'react';
 
 // main ===================================================== //
 type TitleTask = FC<{
-    isThrough: Task["isComplete"],
-    text: Task["title"]
+    data: Task
 }>
 
 // export =================================================== //

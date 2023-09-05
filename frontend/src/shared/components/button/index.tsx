@@ -1,10 +1,11 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
 import React from 'react';
-// inherit -------------------------------------------------- //
+// libs ----------------------------------------------------- //
+import { combineValues } from '@shared/libs/combineValues';
+// internal ------------------------------------------------- //
 import './ui/index.css';
 import type { Button as ButtonType, ButtonAttributes } from './types';
-import { combineValues } from '../../libs/combineValues';
 
 // constants ================================================ //
 const initialAttributes: ButtonAttributes = {

@@ -1,27 +1,32 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { MouseEventHandler } from 'react';
+import React, { useContext } from 'react';
+import type { MouseEvent } from 'react';
+// context -------------------------------------------------- //
+import { ActiveTaskInEditorContext } from '@widgets/task/Editor/context/ActiveTaskInEditorContext';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
-import { deleteTask } from '@app/redux/reducer/tasks';
-import { useAppSelector } from '@shared/hooks/useAppSelector';
-import { activeTaskSelector } from '@app/redux/reducer/activeTask/selectors';
+import { deleteActiveTask } from '@app/redux/reducer/task';
 // components ----------------------------------------------- //
 import { Button } from '@shared/components/button';
 // internal ------------------------------------------------- //
-import "./ui/index.css";
 import ButtonRemoveTaskType from "./types";
 
 // main ===================================================== //
-export const ButtonRemoveTask: ButtonRemoveTaskType = ({ }) => {
+export const ButtonRemoveTask: ButtonRemoveTaskType = ({
+    onClick
+}) => {
 
     const dispatch = useAppDispatch();
-    let active_task = useAppSelector(activeTaskSelector);
+    let { id } = useContext(ActiveTaskInEditorContext);
 
-    function handleClick() {
+    function handleClick(event: MouseEvent<HTMLButtonElement>) {
         dispatch(
-            deleteTask(active_task.id!)
+            deleteActiveTask(id)
         );
+        setTimeout(() => {
+            if (onClick) onClick(event);
+        }, 250);
     }
 
     return (

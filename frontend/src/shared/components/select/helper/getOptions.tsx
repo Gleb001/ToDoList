@@ -12,8 +12,8 @@ type getOptionsType = (options: Option[]) => ReactNode
 export const getOptions: getOptionsType = (options) => (
     options.map(
         (option_attrs, index) => (
-            <option key={option_attrs.value + index} {...option_attrs} >{
-                option_attrs.value
+            <option key={option_attrs.text + index} {...option_attrs} >{
+                option_attrs.text
             }</option>
         )
     )

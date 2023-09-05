@@ -1,18 +1,14 @@
 // imports =================================================== //
 // redux-toolkit --------------------------------------------- //
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// action creators ------------------------------------------- //
-import {
-    getUser,
-    postUser
-} from "./actionCreators";
-// initial state --------------------------------------------- //
-import { initialState } from "./initialState";
 // types ----------------------------------------------------- //
 import type { User } from "@shared/types/user";
+// internal ------------------------------------------------- //
+import { initialState } from "./initialState";
+import { getUser, patchUser } from "./actionCreators";
 
 // main ====================================================== //
-let tasksReducer = createSlice({
+let userReducer = createSlice({
     name: "user",
     initialState,
     reducers: {},
@@ -27,24 +23,22 @@ let tasksReducer = createSlice({
                 state.data = action.payload;
             })
             // POST
-            .addCase(postUser.fulfilled, (state, action: PayloadAction<User>) => {
+            .addCase(patchUser.fulfilled, (state, action: PayloadAction<User>) => {
                 state.status = "succeeded";
-                for (const key in action.payload) {
-                    state.data[key] = action.payload[key];
-                }
+                state.data = action.payload;
             })
             // failed event...
             .addMatcher(
                 (action) => action.type.endsWith("/rejected"),
-                (state, { error }) => {
+                (state, action: PayloadAction<string>) => {
                     state.status = "failed";
-                    state.error = error.message as string;
+                    state.error = action.payload;
                 }
             )
     }
 });
 
 // export ==================================================== //
-export { tasksReducer };
-export { getUser, postUser };
-export default tasksReducer.reducer;
+export { userReducer };
+export { getUser, patchUser };
+export default userReducer.reducer;

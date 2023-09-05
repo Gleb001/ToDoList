@@ -12,32 +12,33 @@ const PATH_TO_USER = path.resolve(
 
 // main ===================================================== //
 async function getUser(req, res) {
-    let { body } = req;
-    let userData = require(PATH_TO_USER);
-    if (body.length) {
-        userData = body.reducer(
-            (obj, key) => obj[key] = userData[key],
-            {}
-        );
-    }
-    res.json(userData);
+    // let { body } = req;
+    // let userData = require(PATH_TO_USER);
+    // if (body.length) {
+    //     userData = body.reducer(
+    //         (obj, key) => obj[key] = userData[key],
+    //         {}
+    //     );
+    // }
+    res.json(
+        require(PATH_TO_USER)
+    );
 }
-async function postUser(req, res) {
+async function patchUser(req, res) {
     let { body } = req;
-    updateJSONFile(
+    let userData = updateJSONFile(
         PATH_TO_USER,
         user => {
             for (const key in body) {
                 user[key] = body[key];
             }
-            return user;
         }
     );
-    res.json(body);
+    res.json(userData);
 }
 
 // exports ================================================== //
 module.exports = {
     getUser,
-    postUser
+    patchUser
 };

@@ -19,7 +19,7 @@
 /* media ---------------------------------------------------- */
 @media screen and (min-width: 540px) {
     #task-container {
-        height: 180px;
+        height: 300px;
     }
 }
 @media screen and (max-width: 540px) {

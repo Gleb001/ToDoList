@@ -1,21 +1,19 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
 import React, { useEffect, useRef, useState } from 'react';
-// helpers -------------------------------------------------- //
-import { getTitle } from './helpers/getTitle';
-import { getStyle } from './helpers/getStyle';
 // internal ------------------------------------------------- //
 import "./ui/index.css";
+import { getTitle } from './helpers/getTitle';
+import { getStyle } from './helpers/getStyle';
 import type { TitleTask as TitleTaskType } from './types';
-
 
 // main ===================================================== //
 export const TitleTask: TitleTaskType = ({
-    isThrough, text
+    data
 }) => {
 
     let TitleTaskRef = useRef<HTMLParagraphElement | null>(null);
-    let [title, setTitle] = useState(text);
+    let [title, setTitle] = useState(data.title);
     useEffect(() => {
         if (TitleTaskRef.current) {
             setTitle(
@@ -27,7 +25,7 @@ export const TitleTask: TitleTaskType = ({
     return (
         <p
             ref={TitleTaskRef}
-            style={getStyle(isThrough)}
+            style={getStyle(data.isComplete)}
             className='title-task'
         >{
             title || "Задача без наименования"

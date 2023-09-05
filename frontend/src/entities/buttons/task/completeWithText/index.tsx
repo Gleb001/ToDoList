@@ -1,35 +1,48 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React from 'react';
+import React, { useContext } from 'react';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 import { useAppSelector } from '@shared/hooks/useAppSelector';
-import { patchTask } from '@app/redux/reducer/tasks';
-import { activeTaskSelector } from '@app/redux/reducer/activeTask/selectors';
+import { deleteActiveTask, patchActiveTask } from '@app/redux/reducer/task';
+import { userIsAutoDeleteTaskAfterCompleteSelector } from '@app/redux/reducer/user/selectors';
+// context -------------------------------------------------- //
+import { ActiveTaskInEditorContext } from '@widgets/task/Editor/context/ActiveTaskInEditorContext';
 // components ----------------------------------------------- //
 import { Button } from '@shared/components/button';
 // internal ------------------------------------------------- //
 import type { ButtonCompleteTaskWithText as ButtonCompleteTaskWithTextType } from './types';
 
-
 // main ===================================================== //
-export const ButtonCompleteTaskWithText: ButtonCompleteTaskWithTextType = ({ }) => {
+export const ButtonCompleteTaskWithText: ButtonCompleteTaskWithTextType = ({
+    onClick
+}) => {
 
     const dispatch = useAppDispatch();
-    let active_task = useAppSelector(activeTaskSelector);
+    let { id, isComplete } = useContext(ActiveTaskInEditorContext);
+    let isAutoDeleteTaskAfterComplete = useAppSelector(userIsAutoDeleteTaskAfterCompleteSelector)
 
     function handleClick() {
-        dispatch(
-            patchTask({
-                id: active_task.id!,
-                isComplete: !active_task.isComplete!
-            })
-        )
+        if (isAutoDeleteTaskAfterComplete) {
+            dispatch(
+                deleteActiveTask(id)
+            );
+            setTimeout(() => {
+                if (onClick) onClick();
+            }, 250);
+        } else {
+            dispatch(
+                patchActiveTask({
+                    id: id,
+                    isComplete: !isComplete
+                })
+            );
+        }
     }
 
     return (
         <Button onClick={handleClick} >{
-            active_task.isComplete! ?
+            isComplete ?
                 "Отменить выполнение" :
                 "Выполнить"
         }</Button>

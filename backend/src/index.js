@@ -3,7 +3,11 @@
 const express = require("express");
 const cors = require("cors");
 // routes ---------------------------------------------- //
-const {tasksRoute, userRoute} = require("./routes/index");
+const {
+    userRoute,
+    listTasksRoute,
+    activeTaskRoute
+} = require("./routes/index");
 
 // constants =========================================== //
 const APP = express();
@@ -13,7 +17,8 @@ const PORT = 5000;
 APP.use(express.json());
 APP.use(cors());
 
-APP.use("/api/tasks", tasksRoute);
+APP.use("/api/tasks", listTasksRoute);
+APP.use("/api/tasks", activeTaskRoute);
 APP.use("/api/user", userRoute);
 
 APP.listen(
