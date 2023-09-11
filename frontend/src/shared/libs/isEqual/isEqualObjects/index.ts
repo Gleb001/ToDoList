@@ -12,9 +12,13 @@ export const isEqualObjects: isEqualObjectsType = (
     if (obj_1 === obj_2) return true;
     if (Array.isArray(obj_1) && Array.isArray(obj_2)) return isEqualArrays(obj_1, obj_2);
 
-    for (let key in obj_1) {
-        let isEqualValues = isEqual(obj_1[key], obj_2[key]);
-        if (!isEqualValues) return false;
+    let keys = [
+        ...Object.keys(obj_1),
+        ...Object.keys(obj_2),
+    ];
+    for (let key of keys) {
+        // @ts-ignore
+        if (!isEqual(obj_1[key], obj_2[key])) return false;
     }
     return true;
 }

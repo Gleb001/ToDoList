@@ -5,7 +5,8 @@ import type { bubbleSortArrayType } from "./types";
 export const bubbleSortArray: bubbleSortArrayType = (
     array, ...conditions
 ) => {
-    if (conditions.length === 0 || array.length < 2) return array;
+    if (array.length <= 1) return array;
+    if (conditions.length === 0) conditions = [(a, b) => a > b]; 
 
     let result = [...array];
     let length_subarray = array.length;

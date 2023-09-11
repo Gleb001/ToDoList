@@ -1,10 +1,10 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
-// inherit -------------------------------------------------- //
+// internal ------------------------------------------------- //
 import "./ui/index.css";
 import type { TextAreaType } from "./types";
-import { setHeightForContent } from './helper/setHeightForContent';
+import { setHeightForContent } from './helpers/setHeightForContent';
 
 // main ===================================================== //
 export const TextArea: TextAreaType = ({
@@ -17,7 +17,7 @@ export const TextArea: TextAreaType = ({
         if (TextAreaRef.current) {
             setHeightForContent(TextAreaRef.current!);
         }
-    }, [])
+    }, []);
 
     function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
         let element = event.target;

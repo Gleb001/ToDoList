@@ -18,6 +18,7 @@ export const ButtonAddTask: ButtonAddTaskType = ({ }) => {
     const navigate = useNavigate();
 
     function handleClick() {
+        console.log("hello")
         const new_task = CreateTask();
         dispatch(
             postListTasks(new_task)

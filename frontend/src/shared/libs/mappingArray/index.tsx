@@ -8,9 +8,7 @@ import type { mappingArray as mappingArrayType } from "./types";
 export const mappingArray: mappingArrayType = (
     array, Component
 ) => (
-    <>{
-        array.map(item => {
-            <Component key={item.id} {...item} />;
-        })
-    }</>
-)
+    array.map(
+        item => <Component key={item.id} {...item} />
+    )
+);

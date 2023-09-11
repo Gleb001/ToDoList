@@ -1,9 +1,6 @@
 // import =================================================== //
-// libs ----------------------------------------------------- //
-import {
-    isObject,
-    isEmptyObject
-} from "@shared/libs/workWIthObjects";
+import { isObject } from "@shared/libs/isObject";
+import { isEmptyObject } from "@shared/libs/isEmptyObject";
 
 // main ===================================================== //
 type Priority = 0 | 1 | 2 | 3
@@ -14,10 +11,10 @@ interface Task {
     priority: Priority,
     isComplete: boolean,
 }
-type DataTask = (
-    { id: Task["id"] } &
-    { [key in keyof Task]?: Task[key] }
-)
+interface DataTask {
+    index: number,
+    data: Task
+}
 type isTaskType = (obj: any) => obj is Task
 
 // checks --------------------------------------------------- //

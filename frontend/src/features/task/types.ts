@@ -1,12 +1,9 @@
 // import =================================================== //
 import type { FC } from 'react';
-import type { Task } from '@shared/types/tasks';
+import type { DataTask} from '@shared/types/tasks';
 
 // main ===================================================== //
-type TaskFunctionComponent = FC<{
-    index: number,
-    data: Task,
-}>
+type TaskFunctionComponent = FC<DataTask>
 
 // export =================================================== //
 export type { TaskFunctionComponent };

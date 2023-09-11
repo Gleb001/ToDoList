@@ -8,22 +8,19 @@ import type { Setting } from './types';
 // main ===================================================== //
 export const Settings: Setting = {
 
-    Field({ name, children }) {
+    Field({ children, name, ...attrs  }) {
         return (
-            <div className='setting'>
+            <div {...attrs} className='setting'>
                 <span className='setting-name'>{name}</span>
                 {children}
             </div>
         )
     },
 
-    Wrapper({ children }) {
+    Wrapper({ children, ...attrs  }) {
         return (
-            <div id='settings-container'>{
-                Children.map(
-                    children,
-                    child => child
-                )
+            <div {...attrs} id='settings-container'>{
+                Children.map(children, child => child)
             }</div>
         )
     }

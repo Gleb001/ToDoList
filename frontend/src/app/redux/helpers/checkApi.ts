@@ -6,10 +6,10 @@ type checkAPIType = AsyncThunkPayloadCreator<any, () => Promise<any>>;
 
 // main ===================================================== //
 export const checkAPI: checkAPIType = async (api, thunkAPI) => {
-    let response = await api();
-    return (
-        typeof response.error === "string" ?
-            thunkAPI.rejectWithValue(response) :
-            response
-    );
+    try {
+        return await api();
+    } catch (error) {
+        // @ts-ignore
+        return thunkAPI.rejectWithValue(error.message);
+    }
 };

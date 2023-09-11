@@ -1,3 +1,3 @@
 export default () => (
-    "id-" + Math.random().toString(18).slice(2)
+    "id-" + Math.random().toString(15).slice(2)
 );

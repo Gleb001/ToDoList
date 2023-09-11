@@ -11,5 +11,5 @@ export const getLengthRow: getLengthRowType = (
     if (!element) return 0;
     let fontSize = element.computedStyleMap().get("font-size") as CSSStyleValue;
     let width_char = (fontSize.value / 2) + 1;
-    return Math.trunc(element.clientWidth / width_char);
+    return Math.trunc(element.getBoundingClientRect().width / width_char);
 }

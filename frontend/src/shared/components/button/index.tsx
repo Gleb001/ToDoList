@@ -2,7 +2,7 @@
 // react ---------------------------------------------------- //
 import React from 'react';
 // libs ----------------------------------------------------- //
-import { combineValues } from '@shared/libs/combineValues';
+import { concatObjects } from '@shared/libs/concatObects';
 // internal ------------------------------------------------- //
 import './ui/index.css';
 import type { Button as ButtonType, ButtonAttributes } from './types';
@@ -16,7 +16,7 @@ const initialAttributes: ButtonAttributes = {
 export const Button: ButtonType = ({
     children, ...attr
 }) => (
-    <button {...combineValues(attr, initialAttributes)} >{
+    <button {...concatObjects(attr, initialAttributes)} >{
         children
     }</button>
 );
