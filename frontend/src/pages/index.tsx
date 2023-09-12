@@ -1,6 +1,5 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React from "react";
 import { Route, Outlet, redirect } from "react-router";
 // pages ---------------------------------------------------- //
 import { TasksPage } from "./tasksPage";

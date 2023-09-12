@@ -1,11 +1,11 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 import { useAppSelector } from '@shared/hooks/useAppSelector';
 import { deleteActiveTask, patchActiveTask } from '@app/redux/reducer/task';
-import { userIsAutoDeleteTaskAfterCompleteSelector } from '@app/redux/reducer/user/selectors';
+import { userIsAutoDeleteAfterCompleteSelector } from '@app/redux/reducer/user/selectors';
 // context -------------------------------------------------- //
 import { ActiveTaskInEditorContext } from '@widgets/task/Editor/context/ActiveTaskInEditorContext';
 // components ----------------------------------------------- //
@@ -19,11 +19,11 @@ export const ButtonCompleteTaskWithText: ButtonCompleteTaskWithTextType = ({
 }) => {
 
     const dispatch = useAppDispatch();
-    let { id, isComplete } = useContext(ActiveTaskInEditorContext);
-    let isAutoDeleteTaskAfterComplete = useAppSelector(userIsAutoDeleteTaskAfterCompleteSelector)
+    const { id, isComplete } = useContext(ActiveTaskInEditorContext);
+    const isAutoDelete = useAppSelector(userIsAutoDeleteAfterCompleteSelector)
 
     function handleClick() {
-        if (isAutoDeleteTaskAfterComplete) {
+        if (isAutoDelete) {
             dispatch(
                 deleteActiveTask(id)
             );

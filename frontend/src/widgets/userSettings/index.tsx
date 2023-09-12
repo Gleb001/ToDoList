@@ -1,6 +1,6 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React from 'react';
+import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 // components ----------------------------------------------- //
 import { ActionWindow } from '@shared/components/actionWindow';
@@ -10,10 +10,9 @@ import { SelectChangeTheme } from '@entities/select/changeTheme';
 import { SelectAutoDeleteTaskAfterComplete } from '@entities/select/autoDeleteTaskAfterRemove';
 // internal ------------------------------------------------- //
 import './ui/index.css';
-import type { UserSettings as UserSettingsType } from './types';
 
 // main ===================================================== //
-export const UserSettings: UserSettingsType = ({ }) => (
+export const UserSettings: FC = () => (
     <ActionWindow.Wrapper>
         <ActionWindow.Header name="Настройки">
             <NavLink to="/tasks">

@@ -1,6 +1,6 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { createContext } from "react";
+import type { FC } from "react";
 import { useNavigate, useParams } from "react-router";
 // check types ---------------------------------------------- //
 import { isTask } from "@shared/types/tasks";
@@ -17,11 +17,10 @@ import { useAppSelector } from "@shared/hooks/useAppSelector";
 import { activeTaskByIdSelector } from "@app/redux/reducer/task/selectors";
 // internal ------------------------------------------------- //
 import "./ui/index.css";
-import type { taskEditorType } from "./types";
 import { ActiveTaskInEditorContext } from "./context/ActiveTaskInEditorContext";
 
 // main ===================================================== //
-export const TaskEditor: taskEditorType = ({ }) => {
+export const TaskEditor: FC = () => {
 
     const { id } = useParams();
     const active_task = useAppSelector(state => activeTaskByIdSelector(state, id!));

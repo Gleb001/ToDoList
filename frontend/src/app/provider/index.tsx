@@ -1,6 +1,5 @@
 // imports ================================================== //
 // react ---------------------------------------------------- //
-import React from "react";
 import {
     createBrowserRouter,
     createRoutesFromElements,

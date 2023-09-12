@@ -1,28 +1,29 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React from 'react';
 import type { ChangeEvent } from "react";
+import type { FC } from "react";
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 import { patchUser } from '@app/redux/reducer/user/actionCreators';
-import { userIsAutoDeleteTaskAfterCompleteSelector } from '@app/redux/reducer/user/selectors';
+import { userIsAutoDeleteAfterCompleteSelector } from '@app/redux/reducer/user/selectors';
 // components ----------------------------------------------- //
 import { Select } from '@shared/components/select';
 // internal ------------------------------------------------- //
 import { OPTIONS_DATA } from './constants/optionsData';
 import { useAppSelector } from '@shared/hooks/useAppSelector';
-import type { SelectAutoDeleteTaskAfterComplete as SelectAutoDeleteTaskAfterCompleteType } from './types';
 
 // main ===================================================== //
-export const SelectAutoDeleteTaskAfterComplete: SelectAutoDeleteTaskAfterCompleteType = ({ }) => {
+export const SelectAutoDeleteTaskAfterComplete: FC = () => {
 
     const dispatch = useAppDispatch();
-    let autoDeleteTaskAfterComplete = useAppSelector(userIsAutoDeleteTaskAfterCompleteSelector);
+    const isAutoDelete = useAppSelector(userIsAutoDeleteAfterCompleteSelector);
 
     function handleChange(event: ChangeEvent<HTMLSelectElement>) {
         dispatch(
-            patchUser({ 
-                isAutoDeleteTaskAfterComplete: Boolean(Number(event.target.value))
+            patchUser({
+                isAutoDeleteAfterComplete: Boolean(
+                    Number(event.target.value)
+                )
             })
         );
     }
@@ -31,7 +32,7 @@ export const SelectAutoDeleteTaskAfterComplete: SelectAutoDeleteTaskAfterComplet
         <Select
             onChange={handleChange}
             data={OPTIONS_DATA}
-            defaultValue={String(Number(autoDeleteTaskAfterComplete)!)}
+            defaultValue={String(Number(isAutoDelete)!)}
         />
     );
 

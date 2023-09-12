@@ -11,10 +11,14 @@ interface Task {
     priority: Priority,
     isComplete: boolean,
 }
-interface DataTask {
-    index: number,
-    data: Task
-}
+// interface DataTask {
+//     index: number,
+//     data: Task
+// }
+type DataTask = (
+    { [key in keyof Task]?: Task[key]; } &
+    { id: Task["id"] }
+)
 type isTaskType = (obj: any) => obj is Task
 
 // checks --------------------------------------------------- //

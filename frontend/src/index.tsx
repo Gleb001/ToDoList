@@ -1,7 +1,7 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
 import ReactDOM from 'react-dom/client';
-import React from "react";
+import { StrictMode } from "react";
 import { Provider } from "react-redux";
 // internal ------------------------------------------------- //
 import { App } from './app';
@@ -11,9 +11,9 @@ import { store } from '@app/redux';
 // @ts-ignore ReactDom.createRoot is experemental
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.StrictMode>
+    <StrictMode>
         <Provider store={store}>
             <App />
         </Provider>
-    </React.StrictMode>
+    </StrictMode>
 );

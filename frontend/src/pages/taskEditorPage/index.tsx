@@ -1,12 +1,10 @@
 // import =================================================== //
-// react ---------------------------------------------------- //
-import React from 'react';
+// react -------------------------------------------------- //
+import type { FC } from "react";
 // components ----------------------------------------------- //
 import { TaskEditor } from '@widgets/task/Editor';
-// inherit -------------------------------------------------- //
-import type { TaskEditorPage as TaskEditorPageType } from './types';
 
 // main ===================================================== //
-export const TaskEditorPage: TaskEditorPageType = ({ }) => (
+export const TaskEditorPage: FC = () => (
     <TaskEditor />
 );

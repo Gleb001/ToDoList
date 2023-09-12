@@ -1,6 +1,6 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import type { MouseEvent } from 'react';
 // context -------------------------------------------------- //
 import { ActiveTaskInEditorContext } from '@widgets/task/Editor/context/ActiveTaskInEditorContext';
@@ -18,7 +18,7 @@ export const ButtonRemoveTask: ButtonRemoveTaskType = ({
 }) => {
 
     const dispatch = useAppDispatch();
-    let { id } = useContext(ActiveTaskInEditorContext);
+    const { id } = useContext(ActiveTaskInEditorContext);
 
     function handleClick(event: MouseEvent<HTMLButtonElement>) {
         dispatch(

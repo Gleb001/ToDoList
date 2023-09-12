@@ -1,6 +1,6 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import { getTitle } from './helpers/getTitle';
@@ -13,7 +13,8 @@ export const TitleTask: TitleTaskType = ({
 }) => {
 
     let TitleTaskRef = useRef<HTMLParagraphElement | null>(null);
-    let [title, setTitle] = useState(data.title);
+    const [title, setTitle] = useState(data.title);
+    
     useEffect(() => {
         if (TitleTaskRef.current) {
             setTitle(

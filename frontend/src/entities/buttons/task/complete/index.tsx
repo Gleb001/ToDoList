@@ -1,11 +1,9 @@
 // import =================================================== //
-// react ---------------------------------------------------- //
-import React from 'react';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 import { deleteActiveTask, patchActiveTask } from '@app/redux/reducer/task';
 import { useAppSelector } from '@shared/hooks/useAppSelector';
-import { userIsAutoDeleteTaskAfterCompleteSelector } from '@app/redux/reducer/user/selectors';
+import { userIsAutoDeleteAfterCompleteSelector } from '@app/redux/reducer/user/selectors';
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import { getClassName } from './helpers/getClassName';
@@ -17,18 +15,19 @@ export const ButtonCompleteTask: ButtonCompleteTaskType = ({
 }) => {
 
     const dispatch = useAppDispatch();
-    let isAutoDeleteTaskAfterComplete = useAppSelector(userIsAutoDeleteTaskAfterCompleteSelector);
+    const { id, isComplete, priority } = data;
+    const isAutoDelete = useAppSelector(userIsAutoDeleteAfterCompleteSelector);
 
     function handleClick() {
-        if (isAutoDeleteTaskAfterComplete) {
+        if (isAutoDelete) {
             dispatch(
-                deleteActiveTask(data.id)
+                deleteActiveTask(id)
             );
         } else {
             dispatch(
                 patchActiveTask({
                     id: data.id,
-                    isComplete: !data.isComplete
+                    isComplete: !isComplete
                 })
             );
         }
@@ -36,7 +35,7 @@ export const ButtonCompleteTask: ButtonCompleteTaskType = ({
 
     return (
         <button
-            className={getClassName(data.priority, data.isComplete)}
+            className={getClassName(priority, isComplete)}
             onClick={handleClick}
         />
     );

@@ -1,6 +1,6 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useRef, useMemo, useState } from 'react';
+import { useRef, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
@@ -32,7 +32,7 @@ export const MovingTaskWrapper: MovingTaskWrapperType = ({
     let shadowTaskRef = useMemo(createShadowTask, []);
 
     let current_index = index;
-    let [isMoving, setIsMoving] = useState(false);
+    const [isMoving, setIsMoving] = useState(false);
 
     function handleMouseDown(event?: React.MouseEvent<HTMLDivElement>) {
         timeoutRef.current = setTimeout(() => {

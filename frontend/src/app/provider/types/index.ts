@@ -1,9 +1,10 @@
 // import =================================================== //
-// react ---------------------------------------------------- //
-import type { FC } from 'react';
+import type { JSX } from "react";
 
 // main ===================================================== //
-type SettingsPage = FC<{}>
+type ProviderType = (
+    component: () => React.ReactNode
+) => JSX.Element
 
 // export =================================================== //
-export type { SettingsPage };
+export type { ProviderType };

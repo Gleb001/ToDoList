@@ -1,6 +1,7 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import type { FC } from "react";
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { useAppSelector } from "@shared/hooks/useAppSelector";
@@ -18,10 +19,9 @@ import type { Task } from "@shared/types/tasks";
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import { getTasks } from './helpers/getTasks';
-import type { TaskContainer as TaskContainerType } from "./types";
 
 // main ===================================================== //
-export const TaskContainer: TaskContainerType = () => {
+export const TaskContainer: FC = () => {
 
     const dispatch = useAppDispatch();
     let { data, error, status } = useAppSelector(listTaskSelector);

@@ -1,6 +1,4 @@
 // import =================================================== //
-// react ---------------------------------------------------- //
-import React from 'react';
 // components ----------------------------------------------- //
 import { ContentTask } from './components/content';
 import { MovingTaskWrapper } from './components/movingWrapper';

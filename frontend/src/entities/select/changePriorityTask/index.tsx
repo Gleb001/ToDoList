@@ -1,6 +1,7 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { ChangeEvent, useContext } from 'react';
+import { ChangeEvent, useContext } from 'react';
+import type { FC } from "react";
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 import { patchActiveTask } from '@app/redux/reducer/task/actionCreators';
@@ -13,10 +14,9 @@ import type { Priority } from '@shared/types/tasks';
 // internal ------------------------------------------------- //
 import "./ui/index.css";
 import { PRIORITY_DATA } from './constants/priorityData';
-import type { SelectTaskPriority as SelectTaskPriorityType } from "./types";
 
 // main ===================================================== //
-export const SelectTaskPriority: SelectTaskPriorityType = ({ }) => {
+export const SelectTaskPriority: FC = () => {
 
     const dispatch = useAppDispatch();
     const { id, priority, isComplete } = useContext(ActiveTaskInEditorContext);

@@ -1,8 +1,12 @@
 // import =================================================== //
 import type { FC } from "react";
+import { Task } from "@shared/types/tasks";
 
 // main ===================================================== //
-type SelectTaskPriority = FC<{ }>
+type ChangeTaskType = <T extends keyof Task>(
+    param_name: T,
+    value: Task[T]
+) => void
 
 // export =================================================== //
-export type { SelectTaskPriority };
+export type { ChangeTaskType };

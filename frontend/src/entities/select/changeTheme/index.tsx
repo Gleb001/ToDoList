@@ -1,6 +1,7 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
+import type { FC } from "react";
 // redux ---------------------------------------------------- //
 import { useAppSelector } from '@shared/hooks/useAppSelector';
 import { userThemeSelector } from '@app/redux/reducer/user/selectors';
@@ -12,10 +13,9 @@ import { Select } from '@shared/components/select';
 import { Theme } from '@shared/types/user';
 // internal ------------------------------------------------- //
 import { USER_THEME_DATA } from './constants/userThemeData';
-import type { SelectChangeTheme as SelectChangeThemeType } from './types';
 
 // main ===================================================== //
-export const SelectChangeTheme: SelectChangeThemeType = ({ }) => {
+export const SelectChangeTheme: FC = () => {
 
     const dispatch = useAppDispatch();
     let theme = useAppSelector(userThemeSelector);

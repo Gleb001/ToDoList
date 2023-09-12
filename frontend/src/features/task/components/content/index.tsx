@@ -1,6 +1,4 @@
 // import =================================================== //
-// react ---------------------------------------------------- //
-import React from "react";
 // redux ---------------------------------------------------- //
 import { useAppSelector } from "@shared/hooks/useAppSelector";
 import { activeTaskSelector } from "@app/redux/reducer/task/selectors";

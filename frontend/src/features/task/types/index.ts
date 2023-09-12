@@ -1,9 +1,12 @@
 // import =================================================== //
-// react ---------------------------------------------------- //
 import type { FC } from 'react';
+import type { Task} from '@shared/types/tasks';
 
 // main ===================================================== //
-type SelectAutoDeleteTaskAfterComplete = FC<{}>
+type TaskFunctionComponent = FC<{
+    index: number,
+    data: Task
+}>
 
 // export =================================================== //
-export type { SelectAutoDeleteTaskAfterComplete };
+export type { TaskFunctionComponent };

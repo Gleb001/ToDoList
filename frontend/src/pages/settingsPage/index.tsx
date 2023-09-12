@@ -1,13 +1,10 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React from 'react';
+import type { FC } from "react";
 // components ----------------------------------------------- //
-import { ActionWindow } from '@shared/components/actionWindow';
 import { UserSettings } from '@widgets/userSettings';
-// inherit -------------------------------------------------- //
-import type { SettingsPage as SettingsPageType } from './types';
 
 // main ===================================================== //
-export const SettingsPage: SettingsPageType = ({ }) => (
+export const SettingsPage: FC = () => (
     <UserSettings />
 );

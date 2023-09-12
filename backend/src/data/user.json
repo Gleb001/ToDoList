@@ -1,5 +1,6 @@
 {
-  "theme": "dark",
+  "theme": "light",
   "view_tasks": "tile",
-  "isAutoDeleteTaskAfterComplete": true
+  "isAutoDeleteTaskAfterComplete": false,
+  "isAutoDeleteAfterComplete": false
 }

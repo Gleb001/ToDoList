@@ -1,11 +1,11 @@
 // main ===================================================== //
 type Theme = "light" | "dark"
 type ViewTasks = "tile" | "list"
-type isAutoDeleteTaskAfterComplete = boolean
+type isAutoDeleteAfterComplete = boolean
 interface User {
     theme?: Theme,
     view_tasks?: ViewTasks,
-    isAutoDeleteTaskAfterComplete?: isAutoDeleteTaskAfterComplete
+    isAutoDeleteAfterComplete?: isAutoDeleteAfterComplete
 }
 
 // export =================================================== //
@@ -13,5 +13,5 @@ export type {
     User,
     Theme,
     ViewTasks,
-    isAutoDeleteTaskAfterComplete,
+    isAutoDeleteAfterComplete,
 };

@@ -1,6 +1,5 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React from "react";
 import { useRouteError } from "react-router-dom"
 // inherit -------------------------------------------------- //
 import type {

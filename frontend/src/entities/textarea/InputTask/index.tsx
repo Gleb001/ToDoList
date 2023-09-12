@@ -1,6 +1,7 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useContext } from "react";
+import { useContext } from "react";
+import type { FC } from "react";
 // component ------------------------------------------------ //
 import { TextArea } from "@shared/components/textarea";
 import { ActiveTaskInEditorContext } from "@widgets/task/Editor/context/ActiveTaskInEditorContext";
@@ -9,10 +10,9 @@ import { useAppDispatch } from "@shared/hooks/useAppDispatch";
 import { patchActiveTask } from "@app/redux/reducer/task";
 // internal ------------------------------------------------- //
 import "./ui/index.css";
-import type { TitleTask as TitleTaskType } from "./types";
 
 // main ===================================================== //
-export const TitleTask: TitleTaskType = ({ }) => {
+export const TitleTask: FC = () => {
 
   const dispatch = useAppDispatch();
   const { id, title, isComplete } = useContext(ActiveTaskInEditorContext);

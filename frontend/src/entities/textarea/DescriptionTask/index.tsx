@@ -1,18 +1,17 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { useContext } from 'react';
-// components ----------------------------------------------- //
-import { TextArea } from '@shared/components/textarea';
+import { FC, useContext } from 'react';
 // redux ---------------------------------------------------- //
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 import { patchActiveTask } from '@app/redux/reducer/task';
+// components ----------------------------------------------- //
+import { TextArea } from '@shared/components/textarea';
 // internal ------------------------------------------------- //
 import "./ui/index.css";
-import DescriptionTaskType from "./types";
 import { ActiveTaskInEditorContext } from '@widgets/task/Editor/context/ActiveTaskInEditorContext';
 
 // main ==================================================== //
-export const DescriptionTask: DescriptionTaskType = ({ }) => {
+export const DescriptionTask: FC = () => {
 
   const dispatch = useAppDispatch();
   const { id, description, isComplete } = useContext(ActiveTaskInEditorContext);
