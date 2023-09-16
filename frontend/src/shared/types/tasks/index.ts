@@ -11,10 +11,6 @@ interface Task {
     priority: Priority,
     isComplete: boolean,
 }
-// interface DataTask {
-//     index: number,
-//     data: Task
-// }
 type DataTask = (
     { [key in keyof Task]?: Task[key]; } &
     { id: Task["id"] }
@@ -25,8 +21,7 @@ type isTaskType = (obj: any) => obj is Task
 // @ts-ignore: typescript is a bit buggy, perceives the returned
 // boolean not as an isTaskType type
 export const isTask: isTaskType = (obj) => (
-    isObject(obj) &&
-    !isEmptyObject(obj)
+    isObject(obj) && !isEmptyObject(obj)
 )
 
 // export =================================================== //

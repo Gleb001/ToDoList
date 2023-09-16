@@ -4,13 +4,13 @@ import { configureStore } from "@reduxjs/toolkit";
 // internal -------------------------------------------------- //
 import {
     userReducer,
-    taskReducer
+    tasksReducer
 } from "./reducer";
 
 // main ====================================================== //
 export const store = configureStore({
     reducer: {
         user: userReducer,
-        task: taskReducer
+        tasks: tasksReducer
     }
 });

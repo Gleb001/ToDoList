@@ -1,6 +1,6 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import type { FC } from "react";
 // component ------------------------------------------------ //
 import { TextArea } from "@shared/components/textarea";

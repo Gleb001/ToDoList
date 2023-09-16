@@ -16,6 +16,23 @@
     margin: 5px 0;
 }
 
+/* for default ---------------------------------------------- */
+.default div:has(.task) {
+    cursor: grab;
+    border-color: var(--primary-color);
+    background-color: var(--primary-backgound-color);
+}
+
+/* for moving task ------------------------------------------ */
+.changing div:has(.task):not(:has(.moving-task))  {
+    cursor: grab;
+    color: var(--disabled-task-color);
+    border-color: var(--disabled-task-color);
+}
+.changing div:has(.task):not(:has(.moving-task)) button {
+    border-color: var(--disabled-task-color);
+}
+
 /* media ---------------------------------------------------- */
 @media screen and (min-width: 540px) {
     #task-container {

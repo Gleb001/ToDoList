@@ -4,8 +4,8 @@ import type { Task } from '@shared/types/tasks';
 
 // main ===================================================== //
 type movingTaskWrapper = FC<{
-    index: number,
-    data: Task,
+    initial_index: number,
+    id: Task["id"],
     children: ReactElement,
 }>
 

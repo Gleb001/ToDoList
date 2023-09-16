@@ -1,10 +1,9 @@
 // import =================================================== //
 // react ---------------------------------------------------- //
-import React, { Children } from 'react';
+import { Children } from 'react';
 // internal ------------------------------------------------- //
 import './ui/index.css';
 import type { ActionWindow as ActionWindowType } from './types';
-import { attrs } from '../textarea/tests/constants';
 
 // main ===================================================== //
 export const ActionWindow: ActionWindowType = {

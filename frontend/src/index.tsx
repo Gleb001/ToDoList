@@ -11,9 +11,9 @@ import { store } from '@app/redux';
 // @ts-ignore ReactDom.createRoot is experemental
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <StrictMode>
+    // <StrictMode>
         <Provider store={store}>
             <App />
         </Provider>
-    </StrictMode>
+    // </StrictMode>
 );

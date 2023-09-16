@@ -1,6 +1,9 @@
 /* main ===================================================== */
 
 /* task ----------------------------------------------------- */
+.task {
+    background-color: var(--primary-backgound-color);
+}
 .task-form {
 
     border: 1px solid;
@@ -16,19 +19,17 @@
     justify-content: left;
 
     z-index: 1;
-    /* top: 0px; */
-    /* width: 100%; */
 
 }
 
 /* types task ----------------------------------------------- */
 
 /* enabled */
-.enabled-task {
+/* .enabled-task {
     cursor: grab;
     border-color: var(--primary-color);
     background-color: var(--primary-backgound-color);
-}
+} */
 /* disabled */
 .disabled-task {
     cursor: grab;
@@ -37,9 +38,4 @@
 }
 .disabled-task > button {
     border-color: var(--disabled-task-color);
-}
-
-/* move */
-.moving-task {
-    cursor: grabbing;
 }

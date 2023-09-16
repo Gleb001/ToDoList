@@ -1,3 +1,6 @@
 .shadow-task {
     background-color: var(--secondary-background-color);
 }
+.moving-task {
+    cursor: grabbing;
+}

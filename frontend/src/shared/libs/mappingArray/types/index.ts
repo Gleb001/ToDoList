@@ -7,6 +7,6 @@ type mappingArray = <Type>(
     data: DataComponent<Type>[],
     Component: FC<Type>
 ) => ReactNode
-
+                                
 // export =================================================== //
 export type { mappingArray };

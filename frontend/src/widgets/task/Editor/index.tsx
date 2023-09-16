@@ -26,14 +26,18 @@ export const TaskEditor: FC = () => {
     const active_task = useAppSelector(state => activeTaskByIdSelector(state, id!));
 
     const navigate = useNavigate();
-    const handleExit = () => navigate("/tasks");
+    const handleExit = () => {
+        // Waiting for onblur handlers and their
+        // corresponding dispatches
+        setTimeout(() => navigate("/tasks"), 150);
+    }
 
     return (
         <ActionWindow.Wrapper id="task-editor">
             <ActionWindow.Header>
                 <Button onClick={handleExit}>←</Button>
             </ActionWindow.Header>
-            <ActionWindow.Main>
+            <ActionWindow.Main id="task-main">
                 {
                     isTask(active_task) &&
                     <ActiveTaskInEditorContext.Provider value={active_task}>

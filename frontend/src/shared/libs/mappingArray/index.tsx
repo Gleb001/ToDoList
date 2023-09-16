@@ -1,6 +1,6 @@
 // react ==================================================== //
 // react ---------------------------------------------------- //
-import React from "react";
+import { Children } from "react";
 // internal ------------------------------------------------- //
 import type { mappingArray as mappingArrayType } from "./types";
 

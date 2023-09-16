@@ -2,5 +2,5 @@
   "theme": "light",
   "view_tasks": "tile",
   "isAutoDeleteTaskAfterComplete": false,
-  "isAutoDeleteAfterComplete": false
+  "isAutoDeleteAfterComplete": true
 }

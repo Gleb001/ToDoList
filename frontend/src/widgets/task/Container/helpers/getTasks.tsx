@@ -5,11 +5,11 @@ import type { ReactNode } from "react";
 // components ----------------------------------------------- //
 import { Task } from "@features/task";
 // types ---------------------------------------------------- //
-import type { DataTask, Task as TaskType } from "@shared/types/tasks";
+import type { Task as TaskType } from "@shared/types/tasks";
 import { mappingArray } from "@shared/libs/mappingArray";
 
 // types ==================================================== //
-type MappingDataTask = DataTask & { id: TaskType["id"] }
+type MappingDataTask = { id: TaskType["id"], index: number, data: TaskType }
 type getTasksType = (data: TaskType[]) => ReactNode
 type getDataTask = (data: TaskType[]) => MappingDataTask[]
 

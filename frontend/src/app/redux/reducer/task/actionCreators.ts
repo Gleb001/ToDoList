@@ -3,9 +3,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // internal ------------------------------------------------- //
 import {
-    patchActiveTaskAPI,
-    deleteActiveTaskAPI,
-} from "./api/activeTaskApi";
+    patchTaskAPI,
+    deleteTaskAPI,
+} from "./api/taskAPI";
 import {
     getListTasksAPI,
     postListTasksAPI,
@@ -13,9 +13,9 @@ import {
 } from "./api/listTasksApi";
 
 // main ===================================================== //
-// active task
-export const patchActiveTask  = createAsyncThunk("task/patchActiveTask",  patchActiveTaskAPI  );
-export const deleteActiveTask = createAsyncThunk("task/deleteActiveTask", deleteActiveTaskAPI );
+// task
+export const patchActiveTask  = createAsyncThunk("task/patchActiveTask",  patchTaskAPI  );
+export const deleteActiveTask = createAsyncThunk("task/deleteActiveTask", deleteTaskAPI );
 // list tasks
 export const getListTasks = createAsyncThunk("task/getListTasks",  getListTasksAPI   );
 export const postListTasks = createAsyncThunk("task/postListTasks", postListTasksAPI );
