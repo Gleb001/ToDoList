@@ -29,6 +29,30 @@ Backend:
 * фреймворк [Express](https://expressjs.com/ru/)
 * [NodeJS](https://nodejs.org/)
 * [JSDOC](https://jsdoc.app/)
+
+### Как запустить проект
+Для того чтобы запустить проект, вам потребуется установить npm-пакеты библиотек. Для того чтобы это сделать вам потребуется установить на ПК [NodeJS](https://nodejs.org/ru/download) в месте с которым идет [npm](https://docs.npmjs.com/cli/v8/commands/npm) (пакетный менеджер) для скачивания пакетов из облачного сервера npm.
+
+После этого перейдите через консоль в корневую директорию проекта, которая содержит frontend и backend директории. Далее из корневой директории перейдите в директорию frontend и установите необходимые пакеты:
+```txt
+npm install
+```
+Запустите Webpack сервер и ждите пока откроется окно браузера:
+```txt
+npm run serve
+```
+Для запуска тестирования frontend:
+```txt
+npm run test
+```
+Затем перейдите в директорию backend. Установите npm-пакеты:
+```txt
+npm install
+```
+Запустите сервер Express:
+```txt
+npm run start
+```
   
 ### Файловая архитектура
 При написании проекта старался придерживаться [Feature-Sliced Design архитектуры](https://feature-sliced.design/docs/get-started/overview).
@@ -63,6 +87,30 @@ Backend:
 * framework [Express](https://expressjs.com/ru/)
 * [NodeJS](https://nodejs.org/)
 * [JSDOC](https://jsdoc.app/)
+
+### How to launch a project
+In order to be patient, you need to install the library's npm packages. In order to do something, you need to register on a PC [NodeJS](https://nodejs.org/ru/download ) in the place I'm going with [npm](https://docs.npmjs.com/cli/v8/commands/npm ) (batch manager) for downloading packages from any npm server.
+
+After that, go through the console to the root directory of the project, which supports the interface and server directories. More from the root directory, go to the directory interface and install optional packages:
+``` txt
+npm install
+```
+Download the server web package and wait for it to open for viewing:
+```txt
+npm run serve
+```
+To run frontend testing:
+```txt
+npm run test
+```
+Then go to the backend directory. Install the npm packages:
+```txt
+npm install
+```
+Start the Express Server:
+```txt
+npm run start
+```
 
 ### File architecture
 When writing the project, I tried to adhere to the [Feature-Sliced Design architecture](https://feature-sliced.design/docs/get-started/overview ).
