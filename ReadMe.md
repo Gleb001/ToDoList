@@ -11,10 +11,10 @@
 К сожалению, я не могу приложить демо-версию, так как Github не предназначен для этого (нужно арендовать сервер, добавить базу данных, переписать backend для взаимодействия с этой базой данных). Однако, я приложил пару gif-файлов для обзора.
 
 ![Обзор фукнционала по работе с задачами в приложении](./docs/Show_tasks_app.gif)
-<p style="text-align: center;">Обзор фукнционала по работе с задачами в приложении</p>
+Обзор фукнционала по работе с задачами в приложении
 
 ![Обзор фукнционала настроек пользователя в приложении](./docs/Show_settings_app.gif)
-<p style="text-align: center;">Обзор фукнционала настроек пользователя в приложении</p>
+Обзор фукнционала настроек пользователя в приложении
 
 ## Основная часть
 В данном разделе можно ознакомиться с технической стороной проекта. Основные технические аспекты проекта:
@@ -73,6 +73,12 @@ npm run start
 Hi! Here is my little simple project - ToDo list, thanks to which you can make a list of your to-do/work tasks /daily routines. This project does not have a sufficiently rich functionality, so if you want to add a couple of irreplaceable features to the project, you know what to do (just before that read everything below: code style, file architecture, etc.).
 
 Unfortunately, I can't attach a demo version, since Github is not designed for this (you need to rent a server, add a database, rewrite the backend to interact with this database). However, I have attached a couple of gif files for review.
+
+![Overview of the functionality for working with tasks in the application](./docs/Show_tasks_app.gif)
+Overview of the functionality for working with tasks in the application
+
+![Overview of the functionality of user settings in the application](./docs/Show_settings_app.gif)
+Overview of the functionality of user settings in the application
 
 ## The main part
 In this section, you can get acquainted with the technical side of the project. Main technical aspects of the project:
