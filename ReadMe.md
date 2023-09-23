@@ -30,6 +30,7 @@ Frontend:
 * транспилятор [Babel](https://babeljs.io/)
 * сборщик проекта [Webpack](https://webpack.js.org/)
 * сервер для разработки frontend - [Webpack dev server](https://webpack.js.org/configuration/dev-server/)
+* [CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
 
 Backend:
 * фреймворк [Express](https://expressjs.com/ru/)
@@ -94,6 +95,7 @@ Frontend:
 * transpilator [Babel](https://babeljs.io/)
 * [Webpack](https://webpack.js.org/) project builder
 * frontend development server - [Webpack dev server](https://webpack.js.org/configuration/dev-server/)
+* [CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
 
 Backend:
 * framework [Express](https://expressjs.com/ru/)
